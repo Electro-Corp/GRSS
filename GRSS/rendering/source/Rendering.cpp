@@ -1,0 +1,41 @@
+/*
+ * [PROJECT NAME] General Relativity Simulation Software (GRSS)
+ * [FILE NAME] Rendering.cpp  
+ * [DESCRIPTION] This file contains the main definitions for the rendering engine of GRSS
+ * 
+ * (c) 2026 Electro-Corp, All rights reserved. 
+ *     Reproduction or distribution of this code without permission is prohibited.
+ *     Code Source avaliable for educational and research purposes only. For commercial use, please contact Electro-Corp.
+ *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
+*/
+#include <include/Rendering.h>
+
+namespace Renderer{
+
+RenderingEngine::RenderingEngine(int tlX, int tlY, int brX, int brY){
+    // Setup rendering
+    glClearDepth(1.0f);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LEQUAL);
+    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+    glEnable(GL_COLOR_MATERIAL);
+    
+    // Setup viewport
+    glViewport(tlX, tlY, brX - tlX, brY - tlY);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+
+    float ratio = (float)(brX - tlX) / (float)(brY - tlY);
+    gluPerspective(45, ratio, 0.1, 200); // View angle, ratio, Clip near, Clip far
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+}
+
+void RenderingEngine::tick(){
+    glClearColor(0.0, 0.06, 0.25, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
+    glFlush();
+}
+
+} // RENDERER
