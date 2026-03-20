@@ -1,7 +1,7 @@
 /*
  * [PROJECT NAME] General Relativity Simulation Software (GRSS)
- * [FILE NAME] Rendering.h  
- * [DESCRIPTION] This file contains the main implementation for the rendering engine of GRSS
+ * [FILE NAME] Physics.h  
+ * [DESCRIPTION] This file contains the main definitions for the physics engine of GRSS
  * 
  * (c) 2026 Electro-Corp, All rights reserved. 
  *     Reproduction or distribution of this code without permission is prohibited.
@@ -10,18 +10,6 @@
 */
 #pragma once
 
-#include <GL/gl.h>
-#include <GL/glu.h>
-
-namespace Renderer{
-    // Main class for the Rendering engine
-    class RenderingEngine{
-        public:
-            RenderingEngine(int tlX, int tlY, int brX, int brY);
-
-            // Render the current enviorment
-            void tick();
-        private:
-            
-    };
+namespace Physics{
+    
 }

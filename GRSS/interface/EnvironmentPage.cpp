@@ -12,7 +12,7 @@
 
 EnvironmentPage::EnvironmentPage(wxNotebook* parent) : wxPanel(parent, -1, wxPoint(-1, -1), wxSize(-1, -1), wxBORDER_SUNKEN){
     // Create buttons
-    addMass_button = new wxButton(this, ID_ADD_MASS, wxT("Add Mass"), wxPoint(10, 40));
+    addMass_button = new wxButton(this, ID_ADD_MASS, wxT("Add Mass"), wxPoint(10, 20), wxSize(100, 80));
 
 
     // Connect buttons
@@ -23,7 +23,6 @@ EnvironmentPage::EnvironmentPage(wxNotebook* parent) : wxPanel(parent, -1, wxPoi
 //
 // Button funcs
 //
-
 
 // Add a mass to the physics and rendering engine
 void EnvironmentPage::envPage_addMass(wxCommandEvent& event){
