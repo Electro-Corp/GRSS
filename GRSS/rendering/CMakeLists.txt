@@ -1,4 +1,5 @@
 add_library(rendering SHARED
+    source/Object.cpp
     source/Rendering.cpp
 )
 

@@ -26,5 +26,5 @@ EnvironmentPage::EnvironmentPage(wxNotebook* parent) : wxPanel(parent, -1, wxPoi
 
 // Add a mass to the physics and rendering engine
 void EnvironmentPage::envPage_addMass(wxCommandEvent& event){
-
+    
 }

@@ -1,7 +1,7 @@
 /*
  * [PROJECT NAME] General Relativity Simulation Software (GRSS)
- * [FILE NAME] Mass.h  
- * [DESCRIPTION] Class definition of a mass
+ * [FILE NAME] Object.h  
+ * [DESCRIPTION] This file contains the generic rendering object
  * 
  * (c) 2026 Electro-Corp, All rights reserved. 
  *     Reproduction or distribution of this code without permission is prohibited.
@@ -10,16 +10,16 @@
 */
 #pragma once
 
-#include <common/Vector.h>
+#include <include/Mass.h>
 
-namespace Physics{
-    class Mass{
-        public:
-            Vector3 position;
-            Vector3 linearVelocity, rotationalVelocity;
+namespace Rendering{
+    class Object{
+        public: 
+            Physics::Mass mass;
 
-            double mass, radius;
+            Object(Physics::Mass mass);
 
-            Mass(Vector3 position);
+            virtual void renderObject();
+        private:
     };
-} // PHYSICS
+} // RENDERING

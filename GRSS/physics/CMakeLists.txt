@@ -1,4 +1,5 @@
 add_library(physics SHARED
+    source/Mass.cpp
     source/Physics.cpp
 )
 
