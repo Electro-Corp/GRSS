@@ -15,9 +15,9 @@
 namespace Rendering{
     class Object{
         public: 
-            Physics::Mass mass;
+            Physics::Mass* mass;
 
-            Object(Physics::Mass mass);
+            Object(Physics::Mass* mass);
 
             virtual void renderObject();
         private:

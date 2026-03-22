@@ -12,8 +12,8 @@
 
 namespace Rendering{
 
-Object::Object(Physics::Mass mass) : mass(mass){
-    
+Object::Object(Physics::Mass* mass) : mass(mass){
+
 }
 
 };
