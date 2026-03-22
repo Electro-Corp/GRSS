@@ -10,7 +10,7 @@
 */
 #pragma once
 
-#include <include/Mass.h>
+#include <physics/include/Mass.h>
 
 namespace Rendering{
     class Object{
@@ -19,7 +19,7 @@ namespace Rendering{
 
             Object(Physics::Mass* mass);
 
-            virtual void render();
+            virtual void render() = 0;
         private:
     };
 } // RENDERING

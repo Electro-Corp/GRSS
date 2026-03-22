@@ -15,8 +15,7 @@ if(wxWidgets_USE_FILE)
     include(${wxWidgets_USE_FILE})
 endif()
 
-include_directories(GRSS/rendering/include)
-include_directories(GRSS/physics/include)
+include_directories(GRSS)
 
 # Main executable
 add_executable(GRSS

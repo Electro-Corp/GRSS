@@ -29,7 +29,7 @@ END_EVENT_TABLE()
 OpenGLPanel::OpenGLPanel(wxWindow* parent, int* args) : wxGLCanvas(parent, wxID_ANY, args, wxDefaultPosition, wxDefaultSize, wxFULL_REPAINT_ON_RESIZE){
     context = new wxGLContext(this);
 
-    renderingEngine = new Renderer::RenderingEngine(getWidth() / 2, 0, getWidth(), getHeight());
+    renderingEngine = new Rendering::RenderingEngine(getWidth() / 2, 0, getWidth(), getHeight());
 }
 
 // Getters

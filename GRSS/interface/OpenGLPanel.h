@@ -14,7 +14,7 @@
 #include <wx/panel.h>
 #include <wx/glcanvas.h>
 
-#include <include/Rendering.h>
+#include <rendering/include/Rendering.h>
 
 class OpenGLPanel : public wxGLCanvas {
     public:
@@ -50,5 +50,5 @@ class OpenGLPanel : public wxGLCanvas {
         wxGLContext* context;
 
         // Rendering engine
-        Renderer::RenderingEngine* renderingEngine;
+        Rendering::RenderingEngine* renderingEngine;
 };

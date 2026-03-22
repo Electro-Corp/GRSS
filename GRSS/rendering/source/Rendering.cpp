@@ -10,7 +10,7 @@
 */
 #include <include/Rendering.h>
 
-namespace Renderer{
+namespace Rendering{
 
 RenderingEngine::RenderingEngine(int tlX, int tlY, int brX, int brY){
     // Setup rendering

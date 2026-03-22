@@ -17,7 +17,7 @@
 
 #include <include/Object.h>
 
-namespace Renderer{
+namespace Rendering{
     // Main class for the Rendering engine
     class RenderingEngine{
         public:

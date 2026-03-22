@@ -10,7 +10,7 @@ find_package(OpenGL REQUIRED)
 include_directories(include)
 
 # Include physics
-include_directories(${CMAKE_SOURCE_DIR}/GRSS/physics/include)
+include_directories(${CMAKE_SOURCE_DIR}/GRSS/)
 
 # Link OpenGL 
 target_link_libraries(rendering OpenGL::GL OpenGL::GLU)
