@@ -10,8 +10,12 @@
 */
 #pragma once
 
+#include <vector>
+
 #include <GL/gl.h>
 #include <GL/glu.h>
+
+#include <include/Object.h>
 
 namespace Renderer{
     // Main class for the Rendering engine
@@ -19,9 +23,12 @@ namespace Renderer{
         public:
             RenderingEngine(int tlX, int tlY, int brX, int brY);
 
+            // Add an object to the scene
+            void addObject(Object* object);
+
             // Render the current enviorment
             void tick();
         private:
-            
+            std::vector<Object*> objects;
     };
 }

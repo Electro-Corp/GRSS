@@ -1,7 +1,7 @@
 /*
  * [PROJECT NAME] General Relativity Simulation Software (GRSS)
  * [FILE NAME] Rendering.cpp  
- * [DESCRIPTION] This file contains the main definitions for the rendering engine of GRSS
+ * [DESCRIPTION] This file contains the implementaion for the rendering engine of GRSS
  * 
  * (c) 2026 Electro-Corp, All rights reserved. 
  *     Reproduction or distribution of this code without permission is prohibited.
@@ -31,10 +31,19 @@ RenderingEngine::RenderingEngine(int tlX, int tlY, int brX, int brY){
     glLoadIdentity();
 }
 
+void RenderingEngine::addObject(Object* object){
+    this->objects.push_back(object);
+}
+
 void RenderingEngine::tick(){
     glClearColor(0.0, 0.06, 0.25, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
+    // Render each object
+    for(auto& object: objects){
+        object->render();
+    }
+    // Flush
     glFlush();
 }
 
