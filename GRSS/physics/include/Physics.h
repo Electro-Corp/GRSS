@@ -10,6 +10,24 @@
 */
 #pragma once
 
-namespace Physics{
+#include <vector>
+#include <memory>
 
+#include <physics/include/Mass.h>
+
+namespace Physics{
+	class PhysicsEngine {
+	public:
+		PhysicsEngine();
+
+		void addMass(std::unique_ptr<Mass> mass);
+
+		void step(double dt);
+
+		const std::vector<std::unique_ptr<Mass>>& getMasses() const {
+			return masses;
+		}
+	private:
+		std::vector<std::unique_ptr<Mass>> masses;
+	};
 } // PHYSICS

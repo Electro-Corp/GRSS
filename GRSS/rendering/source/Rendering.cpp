@@ -12,39 +12,35 @@
 
 namespace Rendering{
 
-RenderingEngine::RenderingEngine(int tlX, int tlY, int brX, int brY){
-    // Setup rendering
-    glClearDepth(1.0f);
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LEQUAL);
-    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-    glEnable(GL_COLOR_MATERIAL);
+    RenderingEngine::RenderingEngine(int tlX, int tlY, int brX, int brY){
+        // Setup rendering
+        glClearDepth(1.0f);
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LEQUAL);
+        glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        glEnable(GL_COLOR_MATERIAL);
     
-    // Setup viewport
-    glViewport(tlX, tlY, brX - tlX, brY - tlY);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
+        // Setup viewport
+        glViewport(tlX, tlY, brX - tlX, brY - tlY);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
 
-    float ratio = (float)(brX - tlX) / (float)(brY - tlY);
-    gluPerspective(45, ratio, 0.1, 200); // View angle, ratio, Clip near, Clip far
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-}
-
-void RenderingEngine::addObject(Object* object){
-    this->objects.push_back(object);
-}
-
-void RenderingEngine::tick(){
-    glClearColor(0.0, 0.06, 0.25, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glLoadIdentity();
-    // Render each object
-    for(auto& object: objects){
-        object->render();
+        float ratio = (float)(brX - tlX) / (float)(brY - tlY);
+        gluPerspective(45, ratio, 0.1, 200); // View angle, ratio, Clip near, Clip far
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
     }
-    // Flush
-    glFlush();
-}
 
-} // RENDERER
+    void RenderingEngine::tick(){
+        glClearColor(0.0, 0.06, 0.25, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glLoadIdentity();
+        // Render each object
+        for(auto& object: objects){
+            object->render();
+        }
+        // Flush
+        glFlush();
+    }
+
+} // RENDERING

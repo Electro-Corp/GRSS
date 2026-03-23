@@ -12,4 +12,23 @@
 
 namespace Physics{
 
+    PhysicsEngine::PhysicsEngine() {}
+
+    void PhysicsEngine::addMass(std::unique_ptr<Mass> mass) {
+        masses.push_back(std::move(mass));
+    }
+
+    void PhysicsEngine::step(double dt) {
+        // Basic Euler integration - move to rk4 or better
+        for (auto& mass : masses) {
+            mass->position.x += mass->linearVelocity.x * dt;
+            mass->position.y += mass->linearVelocity.y * dt;
+            mass->position.z += mass->linearVelocity.z * dt;
+        }
+    }
+
+    const std::vector<std::unique_ptr<Mass>>& PhysicsEngine::getMasses() const {
+        return masses;
+    }
+
 } // PHYSICS

@@ -14,6 +14,7 @@
 #include <wx/panel.h>
 #include <wx/glcanvas.h>
 
+#include <interface/ObjectManager.h>
 #include <rendering/include/Rendering.h>
 
 class OpenGLPanel : public wxGLCanvas {

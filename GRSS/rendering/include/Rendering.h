@@ -11,6 +11,7 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -28,11 +29,11 @@ namespace Rendering{
             RenderingEngine(int tlX, int tlY, int brX, int brY);
 
             // Add an object to the scene
-            void addObject(Object* object);
+            void addObject(std::unique_ptr<Object>);
 
             // Render the current enviorment
             void tick();
         private:
-            std::vector<Object*> objects;
+            std::vector<std::unique_ptr<Object>> objects;
     };
 }

@@ -19,7 +19,7 @@ namespace Rendering{
 
             Object(Physics::Mass* mass);
 
-            virtual void render() = 0;
+            virtual void render();
         private:
     };
 } // RENDERING
