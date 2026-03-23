@@ -14,8 +14,6 @@
 #include <wx/panel.h>
 #include <wx/glcanvas.h>
 
-#include <interface/Universe.h>
-
 class OpenGLPanel : public wxGLCanvas {
     public:
         OpenGLPanel(wxWindow* parent, int* args);

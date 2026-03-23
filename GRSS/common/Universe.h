@@ -1,7 +1,7 @@
 /*
  * [PROJECT NAME] General Relativity Simulation Software (GRSS)
  * [FILE NAME] Universe.h
- * [DESCRIPTION] The Universe. . .
+ * [DESCRIPTION] The Universe coordinator
  *
  * (c) 2026 Electro-Corp, All rights reserved.
  *     Reproduction or distribution of this code without permission is prohibited.
@@ -12,6 +12,7 @@
 
 #include <rendering/include/Rendering.h>
 #include <physics/include/Physics.h>
+#include <common/Vector.h>
 
 class Universe {
 public:
@@ -19,12 +20,16 @@ public:
 
 	void setupUniverseViewport(int tlX, int tlY, int brX, int brY);
 
-	// 
+	void addPlanet(Vector3 pos, double mass, double radius);
+
 	void updateRenderer();
+
+	void tick(double dt);
+
 private:
 	Rendering::RenderingEngine* renderingEngine;
 	Physics::PhysicsEngine* physicsEngine;
 };
 
 
-static Universe* universe;
+extern Universe* universe;

@@ -12,7 +12,7 @@
 #include <wx/wx.h>
 
 #include <interface/FrameMain.h>
-#include <interface/Universe.h>
+#include <common/Universe.h>
 
 // Main GRSS wxWidgets App
 class GRSSApp : public wxApp {

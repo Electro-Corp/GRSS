@@ -9,6 +9,7 @@
  *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
  */
 #include "EnvironmentPage.h"
+#include <common/Universe.h>
 
 EnvironmentPage::EnvironmentPage(wxNotebook* parent) : wxPanel(parent, -1, wxPoint(-1, -1), wxSize(-1, -1), wxBORDER_SUNKEN){
     // Create buttons
@@ -26,11 +27,5 @@ EnvironmentPage::EnvironmentPage(wxNotebook* parent) : wxPanel(parent, -1, wxPoi
 
 // Add a mass to the physics and rendering engine
 void EnvironmentPage::envPage_addMass(wxCommandEvent& event){
-    // Create physics object
-    std::unique_ptr<Physics::Mass> mass = std::make_unique<Physics::Mass>(Vector3(0, 0, 0));
-    // Create rendering object
-    std::unique_ptr<Rendering::Object> renderable = std::make_unique<Rendering::Object>(mass.get());
-    // Move them TODO: MAKE WORK WITH UNIVERSE SYSTEM
-   /* renderingEngine->addObject(std::move(renderable));
-    physicsEngine->addMass(std::move(mass));*/
+    universe->addPlanet(Vector3(0, 0, 0), 1.0, 1.0);
 }

@@ -19,7 +19,14 @@ namespace Rendering{
 
             Object(Physics::Mass* mass);
 
-            virtual void render();
+            virtual void render() = 0;
         private:
     };
+
+    class SphereObject : public Object {
+    public:
+        SphereObject(Physics::Mass* mass);
+        void render() override;
+    };
+
 } // RENDERING

@@ -8,6 +8,12 @@
  *     Code Source avaliable for educational and research purposes only. For commercial use, please contact Electro-Corp.
  *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
 */
+#ifdef _WIN32
+#include <windows.h>
+#endif
+#include <GL/gl.h>
+#include <GL/glu.h>
+
 #include <include/Object.h>
 
 namespace Rendering{
@@ -16,8 +22,21 @@ namespace Rendering{
 
 	}
 
-	void Object::render() {
+	SphereObject::SphereObject(Physics::Mass* mass) : Object(mass) {
 
+	}
+
+	void SphereObject::render() {
+		if (!mass) return;
+
+		glPushMatrix();
+		glTranslated(mass->position.x, mass->position.y, mass->position.z);
+
+		GLUquadric* quad = gluNewQuadric();
+		gluSphere(quad, mass->radius > 0 ? mass->radius : 1.0, 32, 32);
+		gluDeleteQuadric(quad);
+
+		glPopMatrix();
 	}
 
 } // RENDERING

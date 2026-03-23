@@ -25,7 +25,9 @@ add_executable(GRSS
     GRSS/interface/TopPanel.cpp
     GRSS/interface/OpenGLPanel.cpp
     GRSS/interface/main.cpp
- "GRSS/interface/Universe.h" "GRSS/interface/Universe.cpp")
+    GRSS/common/Universe.cpp
+    GRSS/common/Universe.h
+)
 
 # Link libraries to executable
 target_link_libraries(GRSS
