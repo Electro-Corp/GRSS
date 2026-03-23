@@ -17,10 +17,21 @@
 #include <wx/dialog.h>
 #include <wx/sizer.h>
 #include <wx/statusbr.h>
+#include <wx/timer.h>
 
 #include "TopPanel.h"
 #include "OpenGLPanel.h"
 
+// For timing rendering
+class RenderTimer : public wxTimer {
+    OpenGLPanel* panel;
+public:
+    RenderTimer(OpenGLPanel* panel);
+    void Notify();
+    void start();
+};
+
+// Main frame of the application
 class GRSSMainFrame : public wxFrame {
     public:
         GRSSMainFrame(const wxString& title);
@@ -31,6 +42,9 @@ class GRSSMainFrame : public wxFrame {
         TopPanel* topPanel;
         // OpenGL area
         OpenGLPanel* openGLPanel;
+
+        // Timer for frame drawing
+        RenderTimer* timer;
 
         // Generate top menu bar
         void generateMenuBar();

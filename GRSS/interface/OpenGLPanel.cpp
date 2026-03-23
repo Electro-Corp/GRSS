@@ -9,6 +9,7 @@
  *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
  */
 #include "OpenGLPanel.h"
+#include <common/Universe.h>
 
 // Delcare event table
 BEGIN_EVENT_TABLE(OpenGLPanel, wxGLCanvas)

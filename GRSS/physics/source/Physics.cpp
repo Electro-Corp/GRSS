@@ -19,7 +19,7 @@ namespace Physics{
     }
 
     void PhysicsEngine::step(double dt) {
-        // Basic Euler integration - move to rk4 or better
+        // Basic Euler integration, move to rk4 or better
         for (auto& mass : masses) {
             mass->position.x += mass->linearVelocity.x * dt;
             mass->position.y += mass->linearVelocity.y * dt;

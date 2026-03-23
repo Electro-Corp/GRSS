@@ -9,6 +9,9 @@
  *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
  */
 #include <common/Universe.h>
+#include <rendering/include/Object.h>
+
+Universe* universe = new Universe();
 
 Universe::Universe() {
 	// Create engines
@@ -20,6 +23,24 @@ void Universe::setupUniverseViewport(int tlX, int tlY, int brX, int brY) {
 	this->renderingEngine->setupViewport(tlX, tlY, brX, brY);
 }
 
+void Universe::addPlanet(Vector3 pos, double mass, double radius) {
+	// 1. Create physics mass
+	std::unique_ptr<Physics::Mass> newMass = std::make_unique<Physics::Mass>(pos);
+	newMass->mass = mass;
+	newMass->radius = radius;
+
+	// 2. Create rendering sphere
+	std::unique_ptr<Rendering::SphereObject> sphereView = std::make_unique<Rendering::SphereObject>(newMass.get());
+
+	// 3. Give ownwership
+	physicsEngine->addMass(std::move(newMass));
+	renderingEngine->addObject(std::move(sphereView));
+}
+
 void Universe::updateRenderer() {
-	this->renderingEngine->tick();
+	renderingEngine->tick();
+}
+
+void Universe::tick(double dt) {
+	physicsEngine->step(dt);
 }

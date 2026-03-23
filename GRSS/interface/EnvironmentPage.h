@@ -15,8 +15,6 @@
 #include <wx/notebook.h>
 
 #include <common/Universe.h>
-#include <physics/include/Mass.h>
-#include <rendering/include/Object.h>
 
 class EnvironmentPage : public wxPanel{
     public:

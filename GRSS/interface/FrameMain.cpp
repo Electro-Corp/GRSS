@@ -27,6 +27,10 @@ GRSSMainFrame::GRSSMainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY,
     openGLPanel = new OpenGLPanel(mainPanel, glArgs);
     hSizer->Add(openGLPanel, 1, wxEXPAND);
 
+    // Create render time
+    timer = new RenderTimer(openGLPanel);
+    timer->start();
+
     CreateStatusBar(); 
     SetStatusText("GRSS loaded.");
 
@@ -60,7 +64,7 @@ void GRSSMainFrame::generateMenuBar(){
 }
 
 void GRSSMainFrame::OnWelcome(wxCommandEvent& event){
-    wxMessageBox("Welcome to GRSS! Still a work-in-progress.", "Welcome", wxOK | wxICON_INFORMATION);
+    wxMessageBox("Welcome.", "Welcome", wxOK | wxICON_INFORMATION);
 }
 
 void GRSSMainFrame::OnExit(wxCommandEvent& event){
@@ -74,4 +78,17 @@ void GRSSMainFrame::OnAbout(wxCommandEvent& event){
 GRSSMainFrame::~GRSSMainFrame(){
     delete topPanel;
     delete mainPanel;
+}
+
+RenderTimer::RenderTimer(OpenGLPanel* panel) : wxTimer() {
+    this->panel = panel;
+}
+
+void RenderTimer::Notify(){
+    if(panel)
+        panel->Refresh();
+}
+
+void RenderTimer::start(){
+    wxTimer::Start(10);
 }
