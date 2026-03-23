@@ -26,5 +26,4 @@ private:
 	Physics::PhysicsEngine* physicsEngine;
 };
 
-
-static Universe* universe;
+static Universe* universe = new Universe();

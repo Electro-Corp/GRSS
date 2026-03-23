@@ -8,18 +8,18 @@
  *     Code Source avaliable for educational and research purposes only. For commercial use, please contact Electro-Corp.
  *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
  */
-#include <interface/Universe.h>
+#include <common/Universe.h>
 
 Universe::Universe() {
 	// Create engines
-	physicsEngine = new Physics::PhysicsEngine();
-	renderingEngine = new Rendering::RenderingEngine();
+	this->physicsEngine = new Physics::PhysicsEngine();
+	this->renderingEngine = new Rendering::RenderingEngine();
 }
 
 void Universe::setupUniverseViewport(int tlX, int tlY, int brX, int brY) {
-	renderingEngine->setupViewport(tlX, tlY, brX, brY);
+	this->renderingEngine->setupViewport(tlX, tlY, brX, brY);
 }
 
 void Universe::updateRenderer() {
-	renderingEngine->tick();
+	this->renderingEngine->tick();
 }

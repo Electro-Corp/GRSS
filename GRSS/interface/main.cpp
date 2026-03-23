@@ -10,15 +10,29 @@
 */
 
 #include <wx/wx.h>
+#include <wx/splash.h>
 
 #include <interface/FrameMain.h>
-#include <interface/Universe.h>
+#include <common/Universe.h>
 
 // Main GRSS wxWidgets App
 class GRSSApp : public wxApp {
     public:
         virtual bool OnInit() {
             GRSSMainFrame* mainFrame = new GRSSMainFrame("General Relativity Simulation Software (GRSS)");
+            // Create splash screen
+            wxImage::AddHandler(new wxJPEGHandler);
+            wxBitmap splash = wxBitmap();
+            splash.LoadFile("assets/Splash.jpg", wxBITMAP_TYPE_JPEG);
+            new wxSplashScreen(splash,
+                wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT,
+                6000, mainFrame, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                wxSIMPLE_BORDER | wxSTAY_ON_TOP);
+
+            // Splash
+            wxYield();
+
+            // Show application
             mainFrame->Show();
             mainFrame->Maximize(true);
             return true;
@@ -27,8 +41,6 @@ class GRSSApp : public wxApp {
 
 
 int main(int argc, char* argv[]) {
-    // Create universe
-    universe = new Universe();
     // Create UI
     wxApp::SetInstance(new GRSSApp);
     wxEntryStart(argc, argv);
