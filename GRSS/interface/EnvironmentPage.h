@@ -14,6 +14,10 @@
 #include <wx/panel.h>
 #include <wx/notebook.h>
 
+#include <interface/Backend.h>
+#include <physics/include/Mass.h>
+#include <rendering/include/Object.h>
+
 class EnvironmentPage : public wxPanel{
     public:
         EnvironmentPage(wxNotebook* parent);

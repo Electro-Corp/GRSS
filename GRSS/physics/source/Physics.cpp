@@ -27,8 +27,4 @@ namespace Physics{
         }
     }
 
-    const std::vector<std::unique_ptr<Mass>>& PhysicsEngine::getMasses() const {
-        return masses;
-    }
-
 } // PHYSICS

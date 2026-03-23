@@ -26,5 +26,11 @@ EnvironmentPage::EnvironmentPage(wxNotebook* parent) : wxPanel(parent, -1, wxPoi
 
 // Add a mass to the physics and rendering engine
 void EnvironmentPage::envPage_addMass(wxCommandEvent& event){
-    
+    // Create physics object
+    std::unique_ptr<Physics::Mass> mass = std::make_unique<Physics::Mass>(Vector3(0, 0, 0));
+    // Create rendering object
+    std::unique_ptr<Rendering::Object> renderable = std::make_unique<Rendering::Object>(mass.get());
+    // Move them
+    physicsEngine->addMass(std::move(mass));
+    renderingEngine->addObject(std::move(renderable));
 }

@@ -11,7 +11,8 @@
 
 #include <wx/wx.h>
 
-#include "FrameMain.h"
+#include <interface/FrameMain.h>
+#include <interface/Backend.h>
 
 // Main GRSS wxWidgets App
 class GRSSApp : public wxApp {
@@ -26,6 +27,10 @@ class GRSSApp : public wxApp {
 
 
 int main(int argc, char* argv[]) {
+    // Create physics engine
+    physicsEngine = new Physics::PhysicsEngine();
+
+    // Create UI
     wxApp::SetInstance(new GRSSApp);
     wxEntryStart(argc, argv);
     wxTheApp->CallOnInit();

@@ -31,6 +31,11 @@ namespace Rendering{
         glLoadIdentity();
     }
 
+    // Add an object to the scene
+    void RenderingEngine::addObject(std::unique_ptr<Object> object) {
+        this->objects.push_back(std::move(object));
+    }
+
     void RenderingEngine::tick(){
         glClearColor(0.0, 0.06, 0.25, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
