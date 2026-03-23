@@ -30,7 +30,7 @@ void EnvironmentPage::envPage_addMass(wxCommandEvent& event){
     std::unique_ptr<Physics::Mass> mass = std::make_unique<Physics::Mass>(Vector3(0, 0, 0));
     // Create rendering object
     std::unique_ptr<Rendering::Object> renderable = std::make_unique<Rendering::Object>(mass.get());
-    // Move them
-    physicsEngine->addMass(std::move(mass));
-    renderingEngine->addObject(std::move(renderable));
+    // Move them TODO: MAKE WORK WITH UNIVERSE SYSTEM
+   /* renderingEngine->addObject(std::move(renderable));
+    physicsEngine->addMass(std::move(mass));*/
 }

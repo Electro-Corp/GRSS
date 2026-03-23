@@ -29,7 +29,7 @@ END_EVENT_TABLE()
 OpenGLPanel::OpenGLPanel(wxWindow* parent, int* args) : wxGLCanvas(parent, wxID_ANY, args, wxDefaultPosition, wxDefaultSize, wxFULL_REPAINT_ON_RESIZE){
     context = new wxGLContext(this);
 
-    renderingEngine = new Rendering::RenderingEngine(getWidth() / 2, 0, getWidth(), getHeight());
+    universe->setupUniverseViewport(getWidth() / 2, 0, getWidth(), getHeight());
 }
 
 // Getters
@@ -50,7 +50,7 @@ void OpenGLPanel::render(wxPaintEvent& event){
     wxPaintDC(this);
 
     // Render commands
-    renderingEngine->tick();
+    universe->updateRenderer();
 
     SwapBuffers();
 }
@@ -106,6 +106,5 @@ void OpenGLPanel::keyReleased(wxKeyEvent& event){
 // Delete
 OpenGLPanel::~OpenGLPanel(){
     // Clean up
-    delete renderingEngine;
     delete context;
 }

@@ -12,14 +12,17 @@
 
 namespace Rendering{
 
-    RenderingEngine::RenderingEngine(int tlX, int tlY, int brX, int brY){
+    RenderingEngine::RenderingEngine(){
         // Setup rendering
         glClearDepth(1.0f);
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LEQUAL);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         glEnable(GL_COLOR_MATERIAL);
-    
+    }
+
+    // Setup viewport
+    void RenderingEngine::setupViewport(int tlX, int tlY, int brX, int brY) {
         // Setup viewport
         glViewport(tlX, tlY, brX - tlX, brY - tlY);
         glMatrixMode(GL_PROJECTION);

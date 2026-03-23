@@ -26,7 +26,10 @@ namespace Rendering{
     // Main class for the Rendering engine
     class RenderingEngine{
         public:
-            RenderingEngine(int tlX, int tlY, int brX, int brY);
+            RenderingEngine();
+
+            // Setup viewport
+            void setupViewport(int tlX, int tlY, int brX, int brY);
 
             // Add an object to the scene
             void addObject(std::unique_ptr<Object>);
