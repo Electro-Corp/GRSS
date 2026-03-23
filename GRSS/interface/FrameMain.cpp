@@ -28,11 +28,11 @@ GRSSMainFrame::GRSSMainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY,
     // Add OpenGL area
     int glArgs[] = {WX_GL_RGBA, WX_GL_DOUBLEBUFFER, WX_GL_DEPTH_SIZE, 16, 0};
     openGLPanel = new OpenGLPanel(mainPanel, glArgs);
-    hSizer->Add(openGLPanel, 1, wxEXPAND);
+    bottom->Add(openGLPanel, 4, wxEXPAND);
 
     // Side bar
     sideBar = new SideBar(mainPanel);
-    hSizer->Add(sideBar, 1, wxEXPAND);
+    bottom->Add(sideBar, 1, wxEXPAND);
 
     hSizer->Add(bottom, 1, wxEXPAND);
 
@@ -85,6 +85,7 @@ void GRSSMainFrame::OnAbout(wxCommandEvent& event){
 }
 
 GRSSMainFrame::~GRSSMainFrame(){
+    timer->Stop();
     delete topPanel;
     delete mainPanel;
 }

@@ -43,5 +43,6 @@ class OpenGLPanel : public wxGLCanvas {
         // Deconstruct
         virtual ~OpenGLPanel();
     private:
+        // Our GL context
         wxGLContext* context;
 };

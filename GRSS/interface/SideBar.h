@@ -1,7 +1,7 @@
 /*
  * [PROJECT NAME] General Relativity Simulation Software (GRSS)
  * [FILE NAME] SideBar.h
- * [DESCRIPTION] Side panel next to gl view for list of objects and 
+ * [DESCRIPTION] Side panel next to gl view for list of objects and properties
  *
  * (c) 2026 Electro-Corp, All rights reserved.
  *     Reproduction or distribution of this code without permission is prohibited.
@@ -13,8 +13,19 @@
 #include <wx/wx.h>
 #include <wx/panel.h>
 
+#include <common/Universe.h>
+
 class SideBar : public wxPanel {
 public:
     SideBar(wxPanel* parent);
+
+    // Update the object list
+    void updateList();
 private:
+    // Enum of IDs
+    enum {
+        ID_OBJECT_LIST_BOX = 0
+    };
+    // List box of objects
+    wxListBox* objectListBox;
 };

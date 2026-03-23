@@ -14,6 +14,8 @@
 #include <memory>
 
 #ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <winsock2.h>
 #include <windows.h>
 #endif
 
@@ -34,6 +36,11 @@ namespace Rendering{
             // Add an object to the scene
             void addObject(std::unique_ptr<Object>);
 
+            // Getters
+            int getNumberOfRenderables() {
+                return objects.size();
+            }
+            
             // Render the current enviorment
             void tick();
         private:

@@ -11,8 +11,12 @@
 #pragma once
 
 #include <rendering/include/Rendering.h>
+#include <rendering/include/Object.h>
 #include <physics/include/Physics.h>
 #include <common/Vector.h>
+
+// Forward declare classes that we'll notify
+class SideBar;
 
 class Universe {
 public:
@@ -26,6 +30,14 @@ public:
 
 	void tick(double dt);
 
+	// Getters
+	int getNumberOfObjects() {
+		return renderingEngine->getNumberOfRenderables();
+	}
+
+	// Classes to notify when things occur
+	// Other classes will set this themselves (practicallity vs purity)
+	SideBar* sideBar; // Notified when planets are added, deleted, or modified
 private:
 	Rendering::RenderingEngine* renderingEngine;
 	Physics::PhysicsEngine* physicsEngine;

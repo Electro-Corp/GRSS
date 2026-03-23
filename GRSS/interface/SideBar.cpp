@@ -12,4 +12,26 @@
 
 SideBar::SideBar(wxPanel* parent) : wxPanel(parent, -1, wxPoint(-1, -1), wxSize(-1, -1), wxBORDER_SUNKEN) {
     m_parent = parent;
+
+    wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+    // Create list box
+    objectListBox = new wxListBox(this, ID_OBJECT_LIST_BOX);
+    sizer->Add(objectListBox, 1, wxEXPAND | wxALL);
+
+    this->SetSizer(sizer);
+
+    // Let universe know
+    universe->sideBar = this;
+}
+
+void SideBar::updateList() {
+    objectListBox->Clear();
+    // Get objects
+    // TODO: getNumberOfObjects just returns an int, we need to be able to know more information 
+    //       about the object... but i couldnt get a clean way with the unique_ptr. The only way
+    //       i got it to work was with std::unique_ptr::get but that defeats the purpose of the unique_ptr
+    for(int i = 0; i < universe->getNumberOfObjects(); i++){
+        objectListBox->Append(wxT("Mass"));
+    }
 }

@@ -9,7 +9,9 @@
  *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
  */
 #include <common/Universe.h>
-#include <rendering/include/Object.h>
+
+// Classes to notify
+#include <interface/SideBar.h>
 
 Universe* universe = new Universe();
 
@@ -36,6 +38,9 @@ void Universe::addPlanet(Vector3 pos, double mass, double radius) {
 	// 3. Give ownwership
 	physicsEngine->addMass(std::move(newMass));
 	renderingEngine->addObject(std::move(sphereView));
+
+	// Alert classes
+	if (sideBar) sideBar->updateList();
 }
 
 void Universe::updateRenderer() {
