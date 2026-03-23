@@ -9,7 +9,7 @@
  *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
 */
 
-#include "FrameMain.h"
+#include <interface/FrameMain.h>
 
 GRSSMainFrame::GRSSMainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) {
     generateMenuBar();

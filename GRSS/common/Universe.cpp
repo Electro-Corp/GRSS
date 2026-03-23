@@ -28,6 +28,7 @@ void Universe::addPlanet(Vector3 pos, double mass, double radius) {
 	std::unique_ptr<Physics::Mass> newMass = std::make_unique<Physics::Mass>(pos);
 	newMass->mass = mass;
 	newMass->radius = radius;
+	newMass->linearVelocity = Vector3(0.0, 0.5, 0.0);
 
 	// 2. Create rendering sphere
 	std::unique_ptr<Rendering::SphereObject> sphereView = std::make_unique<Rendering::SphereObject>(newMass.get());

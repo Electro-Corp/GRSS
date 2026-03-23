@@ -8,7 +8,7 @@
  *     Code Source avaliable for educational and research purposes only. For commercial use, please contact Electro-Corp.
  *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
  */
-#include "TopPanel.h"
+#include <interface/TopPanel.h>
 
 TopPanel::TopPanel(wxPanel* parent) : wxPanel(parent, -1, wxPoint(-1, -1), wxSize(-1, -1), wxBORDER_SUNKEN) {
     m_parent = parent;

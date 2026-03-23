@@ -8,7 +8,7 @@
  *     Code Source avaliable for educational and research purposes only. For commercial use, please contact Electro-Corp.
  *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
  */
-#include "OpenGLPanel.h"
+#include <interface/OpenGLPanel.h>
 #include <common/Universe.h>
 
 // Delcare event table
@@ -30,7 +30,7 @@ END_EVENT_TABLE()
 OpenGLPanel::OpenGLPanel(wxWindow* parent, int* args) : wxGLCanvas(parent, wxID_ANY, args, wxDefaultPosition, wxDefaultSize, wxFULL_REPAINT_ON_RESIZE){
     context = new wxGLContext(this);
 
-    universe->setupUniverseViewport(getWidth() / 2, 0, getWidth(), getHeight());
+    universe->setupUniverseViewport(0, 0, getWidth(), getHeight());
 }
 
 // Getters
@@ -58,16 +58,8 @@ void OpenGLPanel::render(wxPaintEvent& event){
 
 // Refresh our gl context
 void OpenGLPanel::resized(wxSizeEvent& evt){
+    // Refresh
     Refresh();
-}
-
-
-void OpenGLPanel::prepare3DViewport(int tlX, int tlY, int brX, int brY){
-
-}
-
-void OpenGLPanel::prepare2DViewport(int tlX, int tlY, int brX, int brY){
-    
 }
 
 // Various input events

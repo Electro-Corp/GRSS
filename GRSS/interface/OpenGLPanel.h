@@ -27,8 +27,6 @@ class OpenGLPanel : public wxGLCanvas {
 
         // Rendering
         void render(wxPaintEvent& evt);
-        void prepare3DViewport(int tlX, int tlY, int brX, int brY);
-	    void prepare2DViewport(int tlX, int tlY, int brX, int brY);
 
         // Various input events
         void mouseMoved(wxMouseEvent& event);

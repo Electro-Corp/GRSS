@@ -23,12 +23,25 @@ class EnvironmentPage : public wxPanel{
     private:
         // Buttons
         wxButton* addMass_button;
+        wxButton* deleteMass_button;
+        wxButton* convertMass_button;
+        // Tick options
+        wxButton* tick_button;
+        wxSlider* tick_rate;
 
         // Button IDs
         enum {
-            ID_ADD_MASS = 0
+            ID_ADD_MASS = 0,
+            ID_DELETE_MASS = 1,
+            ID_CONVERT_MASS = 2,
+            ID_TICK_PHYSICS = 3,
+            ID_TICK_RATE = 4
         };
 
         // Button funcs
         void envPage_addMass(wxCommandEvent& event);
+        void envPage_deleteMass(wxCommandEvent& event);
+        void envPage_convertMass(wxCommandEvent& event);
+
+        void envPage_physicsTick(wxCommandEvent& event);
 };
