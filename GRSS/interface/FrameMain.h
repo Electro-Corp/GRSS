@@ -19,8 +19,9 @@
 #include <wx/statusbr.h>
 #include <wx/timer.h>
 
-#include "TopPanel.h"
-#include "OpenGLPanel.h"
+#include <interface/TopPanel.h>
+#include <interface/OpenGLPanel.h>
+#include <interface/SideBar.h>
 
 // For timing rendering
 class RenderTimer : public wxTimer {
@@ -40,6 +41,8 @@ class GRSSMainFrame : public wxFrame {
         wxPanel* mainPanel;
         // Top tool panel
         TopPanel* topPanel;
+        // Side panel
+        SideBar* sideBar;
         // OpenGL area
         OpenGLPanel* openGLPanel;
 

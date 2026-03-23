@@ -22,10 +22,19 @@ GRSSMainFrame::GRSSMainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY,
     topPanel = new TopPanel(mainPanel);
     hSizer->Add(topPanel, 0, wxEXPAND | wxALL, 0);
 
+    // Bottom sizer
+    wxBoxSizer* bottom = new wxBoxSizer(wxHORIZONTAL); 
+
     // Add OpenGL area
     int glArgs[] = {WX_GL_RGBA, WX_GL_DOUBLEBUFFER, WX_GL_DEPTH_SIZE, 16, 0};
     openGLPanel = new OpenGLPanel(mainPanel, glArgs);
     hSizer->Add(openGLPanel, 1, wxEXPAND);
+
+    // Side bar
+    sideBar = new SideBar(mainPanel);
+    hSizer->Add(sideBar, 1, wxEXPAND);
+
+    hSizer->Add(bottom, 1, wxEXPAND);
 
     // Create render time
     timer = new RenderTimer(openGLPanel);

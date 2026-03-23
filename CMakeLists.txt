@@ -38,6 +38,7 @@ add_executable(${PROGRAM_NAME}
     GRSS/interface/FrameMain.cpp
     GRSS/interface/EnvironmentPage.cpp
     GRSS/interface/TopPanel.cpp
+    GRSS/interface/SideBar.cpp
     GRSS/interface/OpenGLPanel.cpp
     GRSS/interface/main.cpp
 )
