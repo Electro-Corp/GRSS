@@ -10,7 +10,7 @@ add_subdirectory(GRSS/physics)
 add_subdirectory(GRSS/rendering)
 
 # UI
-find_package(wxWidgets CONFIG REQUIRED)
+find_package(wxWidgets CONFIG REQUIRED core gl)
 if(wxWidgets_USE_FILE)
     include(${wxWidgets_USE_FILE})
 endif()

@@ -1,2 +1,6 @@
 .vscode
 build
+.vs
+vcpkg_installed
+CMakeFiles
+CMakeSettings.json
