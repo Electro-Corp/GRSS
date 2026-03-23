@@ -1,5 +1,13 @@
 cmake_minimum_required(VERSION 3.16)
-project(GRSS)
+
+# build will fail on linux because GRSS will be a directory, and an exe
+if(WIN32)
+    set(PROGRAM_NAME "GRSS")
+elseif(LINUX)
+    set(PROGRAM_NAME "GRSS_BIN")
+endif()
+
+project(${PROGRAM_NAME})
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
@@ -11,7 +19,13 @@ add_subdirectory(GRSS/physics)
 add_subdirectory(GRSS/rendering)
 
 # UI
-find_package(wxWidgets CONFIG REQUIRED core gl)
+if(WIN32)
+    # need "CONFIG" for Windows
+    find_package(wxWidgets CONFIG REQUIRED core gl)
+elseif(LINUX)
+    find_package(wxWidgets REQUIRED core gl adv)
+endif()
+
 if(wxWidgets_USE_FILE)
     include(${wxWidgets_USE_FILE})
 endif()
@@ -19,7 +33,7 @@ endif()
 include_directories(GRSS)
 
 # Main executable
-add_executable(GRSS
+add_executable(${PROGRAM_NAME}
     GRSS/common/Universe.cpp
     GRSS/interface/FrameMain.cpp
     GRSS/interface/EnvironmentPage.cpp
@@ -29,7 +43,7 @@ add_executable(GRSS
 )
 
 # Link libraries to executable
-target_link_libraries(GRSS
+target_link_libraries(${PROGRAM_NAME}
     PRIVATE
         physics
         rendering
