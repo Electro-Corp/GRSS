@@ -12,8 +12,7 @@
 
 #include <vector>
 
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include <wx/glcanvas.h>
 
 #include <include/Object.h>
 
