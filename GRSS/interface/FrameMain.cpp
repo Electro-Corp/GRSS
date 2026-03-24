@@ -50,10 +50,10 @@ GRSSMainFrame::GRSSMainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY,
     mainPanel->SetSizer(hSizer);
 
     this->Center();
-    }
+}
 
-    // Generate top menu bar
-    void GRSSMainFrame::generateMenuBar(){
+// Generate top menu bar
+void GRSSMainFrame::generateMenuBar(){
     // File
     wxMenu* fileMenu = new wxMenu;
     fileMenu->Append(ID_Welcome, "&Welcome...\tCtrl-H", "Message");
@@ -74,32 +74,32 @@ GRSSMainFrame::GRSSMainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY,
     Bind(wxEVT_MENU, &GRSSMainFrame::OnWelcome, this, ID_Welcome);
     Bind(wxEVT_MENU, &GRSSMainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &GRSSMainFrame::OnExit, this, wxID_EXIT);
-    }
+}
 
-    void GRSSMainFrame::OnWelcome(wxCommandEvent& event){
+void GRSSMainFrame::OnWelcome(wxCommandEvent& event){
     wxMessageBox("Welcome.", "Welcome", wxOK | wxICON_INFORMATION);
-    }
+}
 
-    void GRSSMainFrame::OnExit(wxCommandEvent& event){
+void GRSSMainFrame::OnExit(wxCommandEvent& event){
     Close(true);
-    }
+}
 
-    void GRSSMainFrame::OnAbout(wxCommandEvent& event){
+void GRSSMainFrame::OnAbout(wxCommandEvent& event){
     wxMessageBox("GRSS, (c) 2026 Electro-Corp", "About GRSS", wxOK | wxICON_INFORMATION);
-    }
+}
 
-    GRSSMainFrame::~GRSSMainFrame(){
+GRSSMainFrame::~GRSSMainFrame(){
     timer->Stop();
     delete topPanel;
     delete mainPanel;
-    }
+}
 
-    RenderTimer::RenderTimer(OpenGLPanel* panel, GRSSMainFrame* frame) : wxTimer() {
+RenderTimer::RenderTimer(OpenGLPanel* panel, GRSSMainFrame* frame) : wxTimer() {
     this->panel = panel;
     this->frame = frame;
-    }
+}
 
-    void RenderTimer::Notify(){
+void RenderTimer::Notify(){
     if(panel)
         panel->Refresh();
 
@@ -113,8 +113,8 @@ GRSSMainFrame::GRSSMainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY,
             frame->lastTime = currentTime;
         }
     }
-    }
+}
 
-    void RenderTimer::start(){
+void RenderTimer::start(){
     wxTimer::Start(10);
-    }
+}
