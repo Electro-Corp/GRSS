@@ -3,8 +3,10 @@ cmake_minimum_required(VERSION 3.16)
 # build will fail on linux because GRSS will be a directory, and an exe
 if(WIN32)
     set(PROGRAM_NAME "GRSS")
+    set(PROP_LINK "wx::wxpropgrid") # doesnt exist on ubuntu
 elseif(LINUX)
     set(PROGRAM_NAME "GRSS_BIN")
+    set(PROP_LINK "")
 endif()
 
 project(${PROGRAM_NAME})
@@ -23,7 +25,7 @@ if(WIN32)
     # need "CONFIG" for Windows
     find_package(wxWidgets CONFIG REQUIRED core gl propgrid)
 elseif(LINUX)
-    find_package(wxWidgets REQUIRED core gl adv)
+    find_package(wxWidgets REQUIRED core gl adv propgrid)
 endif()
 
 if(wxWidgets_USE_FILE)
@@ -53,7 +55,7 @@ target_link_libraries(${PROGRAM_NAME}
         rendering
 
     ${wxWidgets_LIBRARIES}
-    wx::wxpropgrid
+    ${PROP_LINK}
 )
 
 # Copy assets to build

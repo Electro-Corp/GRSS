@@ -18,9 +18,11 @@
 // Currently selected object in the list view
 extern Rendering::Object* selectedObject;
 
-typedef struct {
+typedef struct Connection{
 	int connectionID;
 	std::function<void()> function;
+	// Optimization for triggers with multiple connections
+	Connection* next = 0;
 } Connection;
 
 class Connector {
@@ -33,6 +35,19 @@ public:
 		Connection connection;
 		connection.connectionID = id;
 		connection.function = std::bind(function, std::ref(object));
+		// See if a connection already exists to this id
+		// slower, on init, but faster during runtime
+		for(Connection& connection : connections){
+			// Is it our id?
+			if(connection.connectionID == id){
+				Connection* ptr = connection.next;
+				// Traverse the chain until we find an empty one
+				while(ptr != 0) ptr = ptr->next; 
+				ptr = &connection;
+				// Done
+				return;
+			}
+		}
 		this->connections.push_back(connection);
 	}
 

@@ -28,9 +28,9 @@ PropertiesPanel::PropertiesPanel(wxPanel* parent) : wxPanel(parent, -1, wxPoint(
 void PropertiesPanel::populatePropertyGrid() {
     // Physics controls
     propertyGrid->Append(new wxPropertyCategory("Position"));
-    propPositionX = new wxFloatProperty("Position X", wxPG_LABEL, 0);
-    propPositionY = new wxFloatProperty("Position Y", wxPG_LABEL, 0);
-    propPositionZ = new wxFloatProperty("Position Z", wxPG_LABEL, 0);
+    propPositionX = new wxFloatProperty("X", wxPG_LABEL, 0);
+    propPositionY = new wxFloatProperty("Y", wxPG_LABEL, 0);
+    propPositionZ = new wxFloatProperty("Z", wxPG_LABEL, 0);
     propertyGrid->Append(propPositionX);
     propertyGrid->Append(propPositionY);
     propertyGrid->Append(propPositionZ);

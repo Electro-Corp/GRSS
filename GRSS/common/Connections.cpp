@@ -13,7 +13,7 @@
 // Create global connector
 Connector* connector = new Connector();
 // Selected object pointer
-Rendering::Object* selectedObject = NULL;
+Rendering::Object* selectedObject = 0;
 
 Connector::Connector() {
 
@@ -23,6 +23,14 @@ void Connector::trigger(int id) {
 	for (Connection connection : connections) {
 		if (connection.connectionID == id) {
 			connection.function();
+			// Traverse the list
+			Connection* next = connection.next;
+			while(next != 0){
+				next->function();
+				next = next->next;
+			}
+			// Done
+			return;
 		}
 	}
 }
