@@ -17,7 +17,7 @@ Rendering::Object* selectedObject = 0;
 int selectedIndex = -1;
 
 Connector::Connector() {
-
+	
 }
 
 void Connector::trigger(int id) {

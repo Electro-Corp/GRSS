@@ -23,7 +23,7 @@ EnvironmentPage::EnvironmentPage(wxNotebook* parent) : wxPanel(parent, -1, wxPoi
     convertMass_button = new wxButton(this, ID_CONVERT_MASS, wxT("Convert Mass"));
     tick_button = new wxButton(this, ID_TICK_PHYSICS, wxT("Tick"));
     // Slider for the tick rate
-    tick_rate = new wxSlider(this, ID_TICK_RATE, 10, -100, 100, wxDefaultPosition, wxSize(100, -1), wxSL_AUTOTICKS | wxSL_VALUE_LABEL);
+    tick_rate = new wxSlider(this, ID_TICK_RATE, 0, -100, 100, wxDefaultPosition, wxSize(100, -1), wxSL_AUTOTICKS | wxSL_VALUE_LABEL);
 
     // Add buttons 
     lButtons->Add(addMass_button, 0, wxEXPAND | wxALL, 0);
