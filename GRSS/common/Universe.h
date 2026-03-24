@@ -23,7 +23,10 @@ public:
 
 	void setupUniverseViewport(int tlX, int tlY, int brX, int brY);
 
+	// Add a planet to both the rendering and physics engine
 	void addPlanet(Vector3 pos, double mass, double radius);
+	// Remove a planet
+	void removePlanet(int index);
 
 	void updateRenderer();
 

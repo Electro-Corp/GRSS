@@ -14,6 +14,7 @@
 Connector* connector = new Connector();
 // Selected object pointer
 Rendering::Object* selectedObject = 0;
+int selectedIndex = -1;
 
 Connector::Connector() {
 

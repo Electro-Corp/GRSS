@@ -40,6 +40,16 @@ void Universe::addPlanet(Vector3 pos, double mass, double radius) {
 	connector->trigger(TRIGGER_MASSES_MODIFIED);
 }
 
+void Universe::removePlanet(int index){
+	if(index >= 0){
+		// Remove from Rendering and Physics
+		renderingEngine->removeObject(index);
+		physicsEngine->removeMass(index);
+
+		connector->trigger(TRIGGER_MASSES_MODIFIED);
+	}
+}
+
 void Universe::updateRenderer() {
 	renderingEngine->tick();
 }

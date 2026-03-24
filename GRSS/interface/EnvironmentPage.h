@@ -14,6 +14,7 @@
 #include <wx/panel.h>
 #include <wx/notebook.h>
 
+#include <common/Connections.h>
 #include <common/Universe.h>
 
 class EnvironmentPage : public wxPanel{

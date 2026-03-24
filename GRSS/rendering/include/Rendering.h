@@ -36,6 +36,9 @@ namespace Rendering{
             // Add an object to the scene
             void addObject(std::shared_ptr<Object>);
 
+            // Remove an object from the scene (remember to clear the mass as well)
+            void removeObject(int index);
+
             // Render the current enviorment
             void tick();
 

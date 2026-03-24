@@ -17,6 +17,7 @@
 
 // Currently selected object in the list view
 extern Rendering::Object* selectedObject;
+extern int selectedIndex;
 
 typedef struct Connection{
 	int connectionID;

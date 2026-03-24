@@ -18,6 +18,10 @@ namespace Physics{
         masses.push_back(std::move(mass));
     }
 
+    void PhysicsEngine::removeMass(int index){
+        masses.erase(masses.begin() + index);
+    }
+
     void PhysicsEngine::step(double dt) {
         // Basic Euler integration, move to rk4 or better
         for (auto& mass : masses) {

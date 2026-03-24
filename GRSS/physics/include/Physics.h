@@ -21,6 +21,7 @@ namespace Physics{
 		PhysicsEngine();
 
 		void addMass(std::shared_ptr<Mass> mass);
+		void removeMass(int index);
 
 		void step(double dt);
 

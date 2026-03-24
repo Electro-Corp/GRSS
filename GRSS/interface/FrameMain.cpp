@@ -85,7 +85,13 @@ void GRSSMainFrame::OnExit(wxCommandEvent& event){
 }
 
 void GRSSMainFrame::OnAbout(wxCommandEvent& event){
-    wxMessageBox("GRSS, (c) 2026 Electro-Corp", "About GRSS", wxOK | wxICON_INFORMATION);
+    wxAboutDialogInfo info;
+    info.SetName(_("GRSS"));
+    info.SetVersion(_("0.0.1 Alpha"));
+    info.SetDescription(_("Simulate the universe, somewhat accurately."));
+    info.SetCopyright("(C) 2026 Electro-Corp, Androo");
+ 
+    wxAboutBox(info);
 }
 
 GRSSMainFrame::~GRSSMainFrame(){

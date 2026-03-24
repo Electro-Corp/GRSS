@@ -32,19 +32,17 @@ SideBar::SideBar(wxPanel* parent) : wxPanel(parent, -1, wxPoint(-1, -1), wxSize(
 }
 
 void SideBar::updateList() {
+    objectListBox->SetSelection(-1);
     objectListBox->Clear();
     // Get objects
-    // TODO: getNumberOfObjects just returns an int, we need to be able to know more information 
-    //       about the object... but i couldnt get a clean way with the unique_ptr. The only way
-    //       i got it to work was with std::unique_ptr::get but that defeats the purpose of the unique_ptr
     for(int i = 0; i < universe->getNumberOfObjects(); i++){
         objectListBox->Append(wxT("Mass"));
     }
 }
 
 void SideBar::OnListBoxSelection(wxCommandEvent& event) {
-    int selection = event.GetSelection();
-    selectedObject = universe->getObjectAtIndex(selection).get();
+    selectedIndex = event.GetSelection();
+    selectedObject = universe->getObjectAtIndex(selectedIndex).get();
     // Fire trigger
     connector->trigger(TRIGGER_MASS_SELECTION_CHANGED);
 }

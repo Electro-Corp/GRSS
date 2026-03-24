@@ -39,6 +39,10 @@ namespace Rendering{
         this->objects.push_back(std::move(object));
     }
 
+    void RenderingEngine::removeObject(int index){
+        this->objects.erase(objects.begin() + index);
+    }
+
     void RenderingEngine::tick(){
         glClearColor(0.0, 0.06, 0.25, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

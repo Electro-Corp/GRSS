@@ -59,7 +59,13 @@ void EnvironmentPage::envPage_addMass(wxCommandEvent& event){
 }
 
 void EnvironmentPage::envPage_deleteMass(wxCommandEvent& event){
-
+    if(selectedObject){
+        universe->removePlanet(selectedIndex);
+        selectedObject = 0;
+        selectedIndex = -1;
+    }else{
+        wxMessageBox("Please select an object to delete.", "Error", wxOK | wxICON_ERROR);
+    }
 }
 
 void EnvironmentPage::envPage_convertMass(wxCommandEvent& event){

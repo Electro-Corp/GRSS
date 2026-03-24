@@ -18,6 +18,7 @@
 #include <wx/sizer.h>
 #include <wx/statusbr.h>
 #include <wx/timer.h>
+#include <wx/aboutdlg.h>
 
 #include <interface/TopPanel.h>
 #include <interface/OpenGLPanel.h>
