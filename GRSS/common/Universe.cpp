@@ -10,9 +10,6 @@
  */
 #include <common/Universe.h>
 
-// Classes to notify
-#include <interface/SideBar.h>
-
 Universe* universe = new Universe();
 
 Universe::Universe() {
@@ -39,8 +36,8 @@ void Universe::addPlanet(Vector3 pos, double mass, double radius) {
 	physicsEngine->addMass(std::move(newMass));
 	renderingEngine->addObject(std::move(sphereView));
 
-	// Alert classes
-	if (sideBar) sideBar->updateList();
+	// 4. Let everyone know
+	connector->trigger(TRIGGER_MASSES_MODIFIED);
 }
 
 void Universe::updateRenderer() {

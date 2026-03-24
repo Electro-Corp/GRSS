@@ -41,7 +41,7 @@ add_executable(${PROGRAM_NAME}
     GRSS/interface/SideBar.cpp
     GRSS/interface/OpenGLPanel.cpp
     GRSS/interface/main.cpp
-)
+ "GRSS/common/Connections.cpp")
 
 # Link libraries to executable
 target_link_libraries(${PROGRAM_NAME}

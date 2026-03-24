@@ -14,6 +14,7 @@
 #include <wx/panel.h>
 
 #include <common/Universe.h>
+#include <common/Connections.h>
 
 class SideBar : public wxPanel {
 public:

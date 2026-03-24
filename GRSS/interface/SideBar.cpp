@@ -21,8 +21,8 @@ SideBar::SideBar(wxPanel* parent) : wxPanel(parent, -1, wxPoint(-1, -1), wxSize(
 
     this->SetSizer(sizer);
 
-    // Let universe know
-    universe->sideBar = this;
+    // Setup triggers
+    connector->addConnection<SideBar>(*this, &SideBar::updateList, TRIGGER_MASSES_MODIFIED);
 }
 
 void SideBar::updateList() {
