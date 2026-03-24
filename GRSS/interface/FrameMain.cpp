@@ -37,8 +37,12 @@ GRSSMainFrame::GRSSMainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY,
     hSizer->Add(bottom, 1, wxEXPAND);
 
     // Create render time
-    timer = new RenderTimer(openGLPanel);
+    timer = new RenderTimer(openGLPanel, this);
     timer->start();
+
+    // FPS
+    lastTime = wxGetLocalTimeMillis().GetValue();
+    frameCount = 0;
 
     CreateStatusBar(); 
     SetStatusText("GRSS loaded.");
@@ -46,10 +50,10 @@ GRSSMainFrame::GRSSMainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY,
     mainPanel->SetSizer(hSizer);
 
     this->Center();
-}
+    }
 
-// Generate top menu bar
-void GRSSMainFrame::generateMenuBar(){
+    // Generate top menu bar
+    void GRSSMainFrame::generateMenuBar(){
     // File
     wxMenu* fileMenu = new wxMenu;
     fileMenu->Append(ID_Welcome, "&Welcome...\tCtrl-H", "Message");
@@ -64,41 +68,53 @@ void GRSSMainFrame::generateMenuBar(){
     wxMenuBar* menuBar = new wxMenuBar;
     menuBar->Append(fileMenu, "&File");
     menuBar->Append(helpMenu, "&Help");
-    
+
     SetMenuBar(menuBar);
 
     Bind(wxEVT_MENU, &GRSSMainFrame::OnWelcome, this, ID_Welcome);
     Bind(wxEVT_MENU, &GRSSMainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &GRSSMainFrame::OnExit, this, wxID_EXIT);
-}
+    }
 
-void GRSSMainFrame::OnWelcome(wxCommandEvent& event){
+    void GRSSMainFrame::OnWelcome(wxCommandEvent& event){
     wxMessageBox("Welcome.", "Welcome", wxOK | wxICON_INFORMATION);
-}
+    }
 
-void GRSSMainFrame::OnExit(wxCommandEvent& event){
+    void GRSSMainFrame::OnExit(wxCommandEvent& event){
     Close(true);
-}
+    }
 
-void GRSSMainFrame::OnAbout(wxCommandEvent& event){
+    void GRSSMainFrame::OnAbout(wxCommandEvent& event){
     wxMessageBox("GRSS, (c) 2026 Electro-Corp", "About GRSS", wxOK | wxICON_INFORMATION);
-}
+    }
 
-GRSSMainFrame::~GRSSMainFrame(){
+    GRSSMainFrame::~GRSSMainFrame(){
     timer->Stop();
     delete topPanel;
     delete mainPanel;
-}
+    }
 
-RenderTimer::RenderTimer(OpenGLPanel* panel) : wxTimer() {
+    RenderTimer::RenderTimer(OpenGLPanel* panel, GRSSMainFrame* frame) : wxTimer() {
     this->panel = panel;
-}
+    this->frame = frame;
+    }
 
-void RenderTimer::Notify(){
+    void RenderTimer::Notify(){
     if(panel)
         panel->Refresh();
-}
 
-void RenderTimer::start(){
+    if(frame){
+        frame->frameCount++;
+        long currentTime = wxGetLocalTimeMillis().GetValue();
+        if(currentTime - frame->lastTime >= 1000){
+            double fps = (double)frame->frameCount / ((double)(currentTime - frame->lastTime) / 1000.0);
+            frame->SetStatusText(wxString::Format("FPS: %.2f", fps));
+            frame->frameCount = 0;
+            frame->lastTime = currentTime;
+        }
+    }
+    }
+
+    void RenderTimer::start(){
     wxTimer::Start(10);
-}
+    }
