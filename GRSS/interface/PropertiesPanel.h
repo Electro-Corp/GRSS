@@ -27,6 +27,8 @@ private:
 
     // Properties
     wxFloatProperty *propPositionX, *propPositionY, *propPositionZ;
+    wxFloatProperty *propVelocityX, *propVelocityY, *propVelocityZ;
+    wxFloatProperty *propAngularVelocityX, *propAngularVelocityY, *propAngularVelocityZ;
     wxFloatProperty *propMass, *propRadius;
 
     void populatePropertyGrid();
@@ -37,6 +39,8 @@ private:
     // Specfics
     // X = 0, Y = 1, Z = 2
     void onPositionChanged(double val, int pos);
+    void onVelocityChanged(double val, int pos);
+    void onAngularVelocityChanged(double val, int pos);
     void onMassChanged(double mass);
     void onRadiusChanged(double radius);
 };

@@ -16,7 +16,7 @@ namespace Physics{
     class Mass{
         public:
             Vector3 position;
-            Vector3 linearVelocity, rotationalVelocity;
+            Vector3 linearVelocity, angularVelocity;
 
             double mass, radius;
 
