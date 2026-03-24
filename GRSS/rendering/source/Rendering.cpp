@@ -24,14 +24,13 @@ namespace Rendering{
     // Setup viewport
     void RenderingEngine::setupViewport(int tlX, int tlY, int brX, int brY) {
         // Setup viewport
-        glViewport(tlX, brY, brX - tlX, brY - tlY);
+        glViewport(0, 0, brX - tlX, brY - tlY);
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
 
         float ratio = ((float)(brX - tlX) / (float)(brY - tlY));
         gluPerspective(45, ratio, 0.1, 200); // View angle, ratio, Clip near, Clip far
         glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
     }
 
     // Add an object to the scene

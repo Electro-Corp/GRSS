@@ -35,13 +35,14 @@ include_directories(GRSS)
 # Main executable
 add_executable(${PROGRAM_NAME}
     GRSS/common/Universe.cpp
+    GRSS/common/Connections.cpp
     GRSS/interface/FrameMain.cpp
     GRSS/interface/EnvironmentPage.cpp
     GRSS/interface/TopPanel.cpp
     GRSS/interface/SideBar.cpp
     GRSS/interface/OpenGLPanel.cpp
     GRSS/interface/main.cpp
- "GRSS/common/Connections.cpp")
+)
 
 # Link libraries to executable
 target_link_libraries(${PROGRAM_NAME}

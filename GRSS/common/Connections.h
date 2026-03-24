@@ -36,6 +36,7 @@ public:
 		this->connections.push_back(connection);
 	}
 
+	// Trigger a connection event
 	void trigger(int id);
 private:
 	std::vector<Connection> connections;
