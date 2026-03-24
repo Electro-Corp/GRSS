@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.16)
 if(WIN32)
     set(PROGRAM_NAME "GRSS")
     set(PROP_LINK "wx::wxpropgrid") # doesnt exist on ubuntu
-elseif(LINUX)
+else()
     set(PROGRAM_NAME "GRSS_BIN")
     set(PROP_LINK "")
 endif()
@@ -24,7 +24,7 @@ add_subdirectory(GRSS/rendering)
 if(WIN32)
     # need "CONFIG" for Windows
     find_package(wxWidgets CONFIG REQUIRED core gl propgrid)
-elseif(LINUX)
+else()
     find_package(wxWidgets REQUIRED core gl adv propgrid)
 endif()
 
