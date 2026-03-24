@@ -23,17 +23,20 @@
 #include <interface/OpenGLPanel.h>
 #include <interface/SideBar.h>
 
+class GRSSMainFrame;
+
 // For timing rendering
 class RenderTimer : public wxTimer {
     OpenGLPanel* panel;
+    GRSSMainFrame* frame;
 public:
-    RenderTimer(OpenGLPanel* panel);
+    RenderTimer(OpenGLPanel* panel, GRSSMainFrame* frame);
     void Notify();
     void start();
 };
 
-// Main frame of the application
 class GRSSMainFrame : public wxFrame {
+    friend class RenderTimer;
     public:
         GRSSMainFrame(const wxString& title);
     private:
@@ -48,6 +51,10 @@ class GRSSMainFrame : public wxFrame {
 
         // Timer for frame drawing
         RenderTimer* timer;
+
+        // FPS Tracking
+        long lastTime;
+        int frameCount;
 
         // Generate top menu bar
         void generateMenuBar();
