@@ -16,7 +16,7 @@
 #include <rendering/include/Object.h>
 
 // Currently selected object in the list view
-static Rendering::Object* selectedObject = nullptr;
+extern Rendering::Object* selectedObject;
 
 typedef struct {
 	int connectionID;
@@ -46,7 +46,8 @@ private:
  * Add a new id here when a new trigger is needed	
  */
 enum Connection_IDs {
-	TRIGGER_MASSES_MODIFIED = 0
+	TRIGGER_MASSES_MODIFIED = 0,
+	TRIGGER_MASS_SELECTION_CHANGED = 1
 };
 
 // Global static Connector

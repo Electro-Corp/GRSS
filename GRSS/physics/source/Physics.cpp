@@ -14,7 +14,7 @@ namespace Physics{
 
     PhysicsEngine::PhysicsEngine() {}
 
-    void PhysicsEngine::addMass(std::unique_ptr<Mass> mass) {
+    void PhysicsEngine::addMass(std::shared_ptr<Mass> mass) {
         masses.push_back(std::move(mass));
     }
 

@@ -34,16 +34,20 @@ namespace Rendering{
             void setupViewport(int tlX, int tlY, int brX, int brY);
 
             // Add an object to the scene
-            void addObject(std::unique_ptr<Object>);
+            void addObject(std::shared_ptr<Object>);
+
+            // Render the current enviorment
+            void tick();
 
             // Getters
             int getNumberOfRenderables() {
                 return objects.size();
             }
-            
-            // Render the current enviorment
-            void tick();
+
+            std::shared_ptr<Object> getObjectAtIndex(int index) {
+                return objects[index];
+            }
         private:
-            std::vector<std::unique_ptr<Object>> objects;
+            std::vector<std::shared_ptr<Object>> objects;
     };
 }

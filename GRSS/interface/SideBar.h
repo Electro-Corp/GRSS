@@ -15,6 +15,7 @@
 
 #include <common/Universe.h>
 #include <common/Connections.h>
+#include <interface/PropertiesPanel.h>
 
 class SideBar : public wxPanel {
 public:
@@ -29,4 +30,8 @@ private:
     };
     // List box of objects
     wxListBox* objectListBox;
+    // Properties panel
+    PropertiesPanel* propertiesPanel;
+
+    void OnListBoxSelection(wxCommandEvent& event);
 };

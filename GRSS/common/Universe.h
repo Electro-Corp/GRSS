@@ -33,6 +33,10 @@ public:
 	int getNumberOfObjects() {
 		return renderingEngine->getNumberOfRenderables();
 	}
+
+	std::shared_ptr<Rendering::Object> getObjectAtIndex(int idx) {
+		return renderingEngine->getObjectAtIndex(idx);
+	}
 private:
 	Rendering::RenderingEngine* renderingEngine;
 	Physics::PhysicsEngine* physicsEngine;

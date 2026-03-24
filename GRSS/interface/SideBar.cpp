@@ -10,6 +10,7 @@
  */
 #include <interface/SideBar.h>
 
+
 SideBar::SideBar(wxPanel* parent) : wxPanel(parent, -1, wxPoint(-1, -1), wxSize(-1, -1), wxBORDER_SUNKEN) {
     m_parent = parent;
 
@@ -17,7 +18,12 @@ SideBar::SideBar(wxPanel* parent) : wxPanel(parent, -1, wxPoint(-1, -1), wxSize(
 
     // Create list box
     objectListBox = new wxListBox(this, ID_OBJECT_LIST_BOX);
+    objectListBox->Bind(wxEVT_LISTBOX, &SideBar::OnListBoxSelection, this);
     sizer->Add(objectListBox, 1, wxEXPAND | wxALL);
+    
+    // Create properties panel
+    propertiesPanel = new PropertiesPanel(this);
+    sizer->Add(propertiesPanel, 1, wxEXPAND);
 
     this->SetSizer(sizer);
 
@@ -34,4 +40,11 @@ void SideBar::updateList() {
     for(int i = 0; i < universe->getNumberOfObjects(); i++){
         objectListBox->Append(wxT("Mass"));
     }
+}
+
+void SideBar::OnListBoxSelection(wxCommandEvent& event) {
+    int selection = event.GetSelection();
+    selectedObject = universe->getObjectAtIndex(selection).get();
+    // Fire trigger
+    connector->trigger(TRIGGER_MASS_SELECTION_CHANGED);
 }

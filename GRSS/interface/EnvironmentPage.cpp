@@ -9,6 +9,7 @@
  *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
  */
 #include <interface/EnvironmentPage.h>
+#include <interface/AddMassDialog.h>
 #include <common/Universe.h>
 
 EnvironmentPage::EnvironmentPage(wxNotebook* parent) : wxPanel(parent, -1, wxPoint(-1, -1), wxSize(-1, -1), wxBORDER_SUNKEN){
@@ -51,7 +52,10 @@ EnvironmentPage::EnvironmentPage(wxNotebook* parent) : wxPanel(parent, -1, wxPoi
 
 // Add a mass to the physics and rendering engine
 void EnvironmentPage::envPage_addMass(wxCommandEvent& event){
-    universe->addPlanet(Vector3(0, 0, 0), 1.0, 1.0);
+    AddMassDialog dialog(this);
+    if (dialog.ShowModal() == wxID_OK) {
+        universe->addPlanet(dialog.getPosition(), dialog.getMass(), dialog.getRadius());
+    }
 }
 
 void EnvironmentPage::envPage_deleteMass(wxCommandEvent& event){

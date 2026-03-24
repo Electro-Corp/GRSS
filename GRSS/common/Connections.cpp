@@ -12,6 +12,8 @@
 
 // Create global connector
 Connector* connector = new Connector();
+// Selected object pointer
+Rendering::Object* selectedObject = NULL;
 
 Connector::Connector() {
 

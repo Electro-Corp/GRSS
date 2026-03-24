@@ -21,7 +21,7 @@ add_subdirectory(GRSS/rendering)
 # UI
 if(WIN32)
     # need "CONFIG" for Windows
-    find_package(wxWidgets CONFIG REQUIRED core gl)
+    find_package(wxWidgets CONFIG REQUIRED core gl propgrid)
 elseif(LINUX)
     find_package(wxWidgets REQUIRED core gl adv)
 endif()
@@ -40,9 +40,11 @@ add_executable(${PROGRAM_NAME}
     GRSS/interface/EnvironmentPage.cpp
     GRSS/interface/TopPanel.cpp
     GRSS/interface/SideBar.cpp
+    GRSS/interface/PropertiesPanel.cpp
+    GRSS/interface/AddMassDialog.cpp
     GRSS/interface/OpenGLPanel.cpp
     GRSS/interface/main.cpp
-)
+ )
 
 # Link libraries to executable
 target_link_libraries(${PROGRAM_NAME}
@@ -51,6 +53,7 @@ target_link_libraries(${PROGRAM_NAME}
         rendering
 
     ${wxWidgets_LIBRARIES}
+    wx::wxpropgrid
 )
 
 # Copy assets to build

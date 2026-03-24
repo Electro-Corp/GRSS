@@ -24,13 +24,13 @@ void Universe::setupUniverseViewport(int tlX, int tlY, int brX, int brY) {
 
 void Universe::addPlanet(Vector3 pos, double mass, double radius) {
 	// 1. Create physics mass
-	std::unique_ptr<Physics::Mass> newMass = std::make_unique<Physics::Mass>(pos);
+	std::shared_ptr<Physics::Mass> newMass = std::make_shared<Physics::Mass>(pos);
 	newMass->mass = mass;
 	newMass->radius = radius;
 	newMass->linearVelocity = Vector3(0.0, 0.5, 0.0);
 
 	// 2. Create rendering sphere
-	std::unique_ptr<Rendering::SphereObject> sphereView = std::make_unique<Rendering::SphereObject>(newMass.get());
+	std::shared_ptr<Rendering::SphereObject> sphereView = std::make_shared<Rendering::SphereObject>(newMass.get());
 
 	// 3. Give ownwership
 	physicsEngine->addMass(std::move(newMass));

@@ -20,14 +20,14 @@ namespace Physics{
 	public:
 		PhysicsEngine();
 
-		void addMass(std::unique_ptr<Mass> mass);
+		void addMass(std::shared_ptr<Mass> mass);
 
 		void step(double dt);
 
-		const std::vector<std::unique_ptr<Mass>>& getMasses() const {
+		std::vector<std::shared_ptr<Mass>> getMasses() {
 			return masses;
 		}
 	private:
-		std::vector<std::unique_ptr<Mass>> masses;
+		std::vector<std::shared_ptr<Mass>> masses;
 	};
 } // PHYSICS

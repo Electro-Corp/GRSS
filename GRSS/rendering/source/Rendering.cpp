@@ -31,10 +31,11 @@ namespace Rendering{
         float ratio = ((float)(brX - tlX) / (float)(brY - tlY));
         gluPerspective(45, ratio, 0.1, 200); // View angle, ratio, Clip near, Clip far
         glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
     }
 
     // Add an object to the scene
-    void RenderingEngine::addObject(std::unique_ptr<Object> object) {
+    void RenderingEngine::addObject(std::shared_ptr<Object> object) {
         this->objects.push_back(std::move(object));
     }
 
