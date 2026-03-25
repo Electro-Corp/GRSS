@@ -30,6 +30,7 @@ END_EVENT_TABLE()
 OpenGLPanel::OpenGLPanel(wxWindow* parent, int* args) : wxGLCanvas(parent, wxID_ANY, args, wxDefaultPosition, wxDefaultSize, wxFULL_REPAINT_ON_RESIZE){
     context = new wxGLContext(this);
 
+    std::cout << "Width: " << getWidth() << " Height: " << getHeight() << "\n";
     universe->setupUniverseViewport(0, 0, getWidth(), getHeight());
 }
 
@@ -49,6 +50,11 @@ void OpenGLPanel::render(wxPaintEvent& event){
 
     wxGLCanvas::SetCurrent(*context);
     wxPaintDC(this);
+    
+    if(refreshSize){
+        universe->setupUniverseViewport(0, 0, getWidth(), getHeight());
+        refreshSize = false; // Set this whenever we need to
+    }
 
     // Render commands
     universe->updateRenderer();

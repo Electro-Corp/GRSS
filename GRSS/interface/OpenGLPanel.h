@@ -43,6 +43,7 @@ class OpenGLPanel : public wxGLCanvas {
         // Deconstruct
         virtual ~OpenGLPanel();
     private:
+        bool refreshSize = true;
         // Our GL context
         wxGLContext* context;
 };

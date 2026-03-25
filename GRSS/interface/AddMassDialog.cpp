@@ -18,9 +18,9 @@ AddMassDialog::AddMassDialog(wxWindow* parent)
 
     addPropertyField(gridSizer, "Position X:", &xInput, "0.0");
     addPropertyField(gridSizer, "Position Y:", &yInput, "0.0");
-    addPropertyField(gridSizer, "Position Z:", &zInput, "0.0");
+    addPropertyField(gridSizer, "Position Z:", &zInput, "-0.6");
     addPropertyField(gridSizer, "Mass (kg):", &massInput, "1.0");
-    addPropertyField(gridSizer, "Radius (m):", &radiusInput, "1.0");
+    addPropertyField(gridSizer, "Radius (m):", &radiusInput, "0.2");
 
     mainSizer->Add(gridSizer, 1, wxALL | wxEXPAND, 15);
 
