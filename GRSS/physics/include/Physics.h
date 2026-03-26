@@ -13,7 +13,10 @@
 #include <vector>
 #include <memory>
 
+#include <CL/cl.h>
+
 #include <physics/include/Mass.h>
+#include <common/aixlog.hpp>
 
 namespace Physics{
 	class PhysicsEngine {
@@ -29,6 +32,9 @@ namespace Physics{
 			return masses;
 		}
 	private:
+		// # of OpenCL devices
+		int computePlatforms;
+		// List of currently simulated masses
 		std::vector<std::shared_ptr<Mass>> masses;
 	};
 } // PHYSICS

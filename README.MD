@@ -2,6 +2,12 @@
 Replace with a better name later. <br>
 A simulation software for General Relativity. 
 
+## Third-Party
+* OpenGL
+* OpenCL
+* wxWidgets
+* aixlogger (included, `GRSS/common/aixlog.h`)
+
 ## Source Tree
 `GRSS/assets` contains visual assets <br>
 `GRSS/common` contains files that are used by all components (eg. Vectors, Trigger/Connector manager) <br>

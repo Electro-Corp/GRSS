@@ -10,10 +10,12 @@
 */
 
 #include <wx/wx.h>
+#include <wx/app.h>
 #include <wx/splash.h>
 
 #include <interface/FrameMain.h>
 #include <common/Universe.h>
+#include <common/aixlog.hpp>
 
 // Main GRSS wxWidgets App
 class GRSSApp : public wxApp {
