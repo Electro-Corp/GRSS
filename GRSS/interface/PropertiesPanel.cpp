@@ -19,8 +19,9 @@ PropertiesPanel::PropertiesPanel(wxPanel* parent) : wxPanel(parent, -1, wxPoint(
     populatePropertyGrid();
     mainSizer->Add(propertyGrid, 1, wxALL | wxEXPAND);
 
-    // Add trigger
+    // Add triggers
     connector->addConnection<PropertiesPanel>(*this, &PropertiesPanel::updatePropertyGrid, TRIGGER_MASS_SELECTION_CHANGED);
+    connector->addConnection<PropertiesPanel>(*this, &PropertiesPanel::updatePropertyGrid, TRIGGER_SELECTED_MASS_MODIFIED);
 
     SetSizerAndFit(mainSizer);
 }

@@ -33,18 +33,18 @@ public:
 	// Must be implmented in header because of C++ bs
 	template <typename T>
 	void addConnection(T& object, void(T::* function)(void), int id) {
-		Connection connection;
-		connection.connectionID = id;
-		connection.function = std::bind(function, std::ref(object));
+		Connection* connection = new Connection;
+		connection->connectionID = id;
+		connection->function = std::bind(function, std::ref(object));
 		// See if a connection already exists to this id
 		// slower, on init, but faster during runtime
-		for(Connection& connection : connections){
+		for(Connection* connection : connections){
 			// Is it our id?
-			if(connection.connectionID == id){
-				Connection* ptr = connection.next;
+			if(connection->connectionID == id){
+				Connection* ptr = connection->next;
 				// Traverse the chain until we find an empty one
-				while(ptr != 0) ptr = ptr->next; 
-				ptr = &connection;
+				while(ptr) ptr = ptr->next; 
+				ptr = connection;
 				// Done
 				return;
 			}
@@ -55,7 +55,7 @@ public:
 	// Trigger a connection event
 	void trigger(int id);
 private:
-	std::vector<Connection> connections;
+	std::vector<Connection*> connections;
 };
 
 /*
@@ -63,7 +63,8 @@ private:
  */
 enum Connection_IDs {
 	TRIGGER_MASSES_MODIFIED = 0,
-	TRIGGER_MASS_SELECTION_CHANGED = 1
+	TRIGGER_MASS_SELECTION_CHANGED = 1,
+	TRIGGER_SELECTED_MASS_MODIFIED = 2, // Different from 0 as it doesnt refresh the mass list
 };
 
 // Global static Connector

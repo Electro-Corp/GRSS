@@ -21,11 +21,11 @@ Connector::Connector() {
 }
 
 void Connector::trigger(int id) {
-	for (Connection connection : connections) {
-		if (connection.connectionID == id) {
-			connection.function();
+	for (Connection* connection : connections) {
+		if (connection->connectionID == id) {
+			connection->function();
 			// Traverse the list
-			Connection* next = connection.next;
+			Connection* next = connection->next;
 			while(next != 0){
 				next->function();
 				next = next->next;
