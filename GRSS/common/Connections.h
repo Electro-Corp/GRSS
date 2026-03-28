@@ -38,10 +38,10 @@ public:
 		connection->function = std::bind(function, std::ref(object));
 		// See if a connection already exists to this id
 		// slower, on init, but faster during runtime
-		for(Connection* connection : connections){
+		for(Connection* prevConnection : connections){
 			// Is it our id?
-			if(connection->connectionID == id){
-				Connection* ptr = connection->next;
+			if(prevConnection->connectionID == id){
+				Connection* ptr = prevConnection->next;
 				// Traverse the chain until we find an empty one
 				while(ptr) ptr = ptr->next; 
 				ptr = connection;

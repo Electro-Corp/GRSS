@@ -26,9 +26,9 @@ void Connector::trigger(int id) {
 			connection->function();
 			// Traverse the list
 			Connection* next = connection->next;
-			while(next != 0){
+			while(next){
 				next->function();
-				next = next->next;
+				next = next->next; 
 			}
 			// Done
 			return;
