@@ -62,6 +62,7 @@ void GRSSMainFrame::generateMenuBar(){
 
     // Help
     wxMenu* helpMenu = new wxMenu;
+    helpMenu->Append(ID_System, "&System Information");
     helpMenu->Append(wxID_ABOUT);
 
     // Menu bar
@@ -72,12 +73,17 @@ void GRSSMainFrame::generateMenuBar(){
     SetMenuBar(menuBar);
 
     Bind(wxEVT_MENU, &GRSSMainFrame::OnWelcome, this, ID_Welcome);
+    Bind(wxEVT_MENU, &GRSSMainFrame::OnSystem, this, ID_System);
     Bind(wxEVT_MENU, &GRSSMainFrame::OnAbout, this, wxID_ABOUT);
     Bind(wxEVT_MENU, &GRSSMainFrame::OnExit, this, wxID_EXIT);
 }
 
 void GRSSMainFrame::OnWelcome(wxCommandEvent& event){
     wxMessageBox("Welcome.", "Welcome", wxOK | wxICON_INFORMATION);
+}
+
+void GRSSMainFrame::OnSystem(wxCommandEvent& event){
+    
 }
 
 void GRSSMainFrame::OnExit(wxCommandEvent& event){

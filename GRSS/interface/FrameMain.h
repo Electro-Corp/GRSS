@@ -23,6 +23,7 @@
 #include <interface/TopPanel.h>
 #include <interface/OpenGLPanel.h>
 #include <interface/SideBar.h>
+#include <interface/SystemDialog.h>
 
 class GRSSMainFrame;
 
@@ -63,11 +64,13 @@ class GRSSMainFrame : public wxFrame {
         // Callbacks for menu bar
         void OnWelcome(wxCommandEvent& event);
         void OnExit(wxCommandEvent& event);
+        void OnSystem(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
 
         ~GRSSMainFrame();
 
         enum {
-            ID_Welcome = 1
+            ID_Welcome = 1,
+            ID_System = 2
         };
 };

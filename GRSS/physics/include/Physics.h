@@ -52,8 +52,8 @@ namespace Physics{
 		std::vector<std::shared_ptr<Mass>> masses;
 
 		// Initilize OpenCL
-		void initlizeOpenCL();
+		void initializeOpenCL();
 		// Initlize device
-		void initilizeOpenCLDevice(int id);
+		void initializeOpenCLDevice(int id);
 	};
 } // PHYSICS

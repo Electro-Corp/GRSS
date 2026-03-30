@@ -18,10 +18,10 @@ namespace Physics{
         LOG(INFO) << "GRSS Physics Engine started...\n";
         LOG(INFO) << "Initlizing OpenCL...\n";
 
-        initlizeOpenCL();
+        initializeOpenCL();
     }
 
-    void PhysicsEngine::initlizeOpenCL() {
+    void PhysicsEngine::initializeOpenCL() {
         // Poll platforms
         cl_int CL_err = CL_SUCCESS;
         cl_uint nPlat = 0;
@@ -41,17 +41,20 @@ namespace Physics{
           
         // Select first platform
         clGetPlatformIDs(1, &openCLPlatform, nullptr);
+        // Retrive name
+        char platformName[128];
+        clGetPlatformInfo(openCLPlatform, CL_PLATFORM_NAME, sizeof(platformName), platformName, nullptr);
 
         // Get number of GPU devices
         cl_uint numGPU;
         clGetDeviceIDs(openCLPlatform, CL_DEVICE_TYPE_GPU, 0, nullptr, &numGPU);
-        LOG(INFO) << "Found " << numGPU << " GPUs on selected platform.\n";
+        LOG(INFO) << "Found " << numGPU << " GPUs on platform " << platformName << ".\n";
 
         // Collect all GPUs 
-        for (int i = 0; i < numGPU; i++) initilizeOpenCLDevice(i + 1);
+        for (int i = 0; i < numGPU; i++) initializeOpenCLDevice(i + 1);
     }
 
-    void PhysicsEngine::initilizeOpenCLDevice(int id) {
+    void PhysicsEngine::initializeOpenCLDevice(int id) {
         CL_ComputeDevice device;
         // Get device ID
         clGetDeviceIDs(openCLPlatform, CL_DEVICE_TYPE_GPU, id, &device.devID, nullptr);
@@ -63,7 +66,7 @@ namespace Physics{
         // Create context
         device.devContext = clCreateContextFromType(NULL, CL_DEVICE_TYPE_GPU, NULL, NULL, NULL);
         // Print device info
-        LOG(INFO) << "Initlized device " << device.vendor << " " << device.name << " with " << device.memory / 1048576 << "MB of memory.\n";
+        LOG(INFO) << "Initialized device " << device.vendor << "'s " << device.name << " with " << device.memory / 1048576 << "MB of memory and " << device.units << " compute units.\n";
         // Add device
         this->computeDevices.push_back(device);
     }
