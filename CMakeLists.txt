@@ -44,6 +44,7 @@ add_executable(${PROGRAM_NAME}
     GRSS/interface/SideBar.cpp
     GRSS/interface/PropertiesPanel.cpp
     GRSS/interface/AddMassDialog.cpp
+    GRSS/interface/SystemDialog.cpp
     GRSS/interface/OpenGLPanel.cpp
     GRSS/interface/main.cpp
  )

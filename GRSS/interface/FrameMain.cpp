@@ -83,7 +83,8 @@ void GRSSMainFrame::OnWelcome(wxCommandEvent& event){
 }
 
 void GRSSMainFrame::OnSystem(wxCommandEvent& event){
-    
+    SystemDialog systemDialog(this);
+    systemDialog.ShowModal();
 }
 
 void GRSSMainFrame::OnExit(wxCommandEvent& event){

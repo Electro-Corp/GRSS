@@ -11,11 +11,15 @@
 #pragma once
 
 #include <wx/wx.h>
+#include <wx/notebook.h>
 #include <wx/panel.h>
+#include <wx/dataview.h>
+
+#include <common/Universe.h>
 
 class SystemDialog : public wxDialog{
 public:
     SystemDialog(wxWindow* parent);
 private:
-
+    wxDataViewListCtrl* openCLDevicesList;
 };

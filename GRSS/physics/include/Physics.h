@@ -43,6 +43,10 @@ namespace Physics{
 		std::vector<std::shared_ptr<Mass>> getMasses() {
 			return masses;
 		}
+
+		std::vector<CL_ComputeDevice> getOpenCLDevices() {
+			return computeDevices;
+		}
 	private:
 		// Selected platform
 		cl_platform_id openCLPlatform;

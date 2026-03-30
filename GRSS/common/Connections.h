@@ -37,7 +37,7 @@ public:
 		connection->connectionID = id;
 		connection->function = std::bind(function, std::ref(object));
 		// See if a connection already exists to this id
-		// slower, on init, but faster during runtime
+		// slower on init, but faster during runtime
 		for(Connection* prevConnection : connections){
 			// Is it our id?
 			if(prevConnection->connectionID == id){

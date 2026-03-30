@@ -40,6 +40,10 @@ public:
 	std::shared_ptr<Rendering::Object> getObjectAtIndex(int idx) {
 		return renderingEngine->getObjectAtIndex(idx);
 	}
+
+	Physics::PhysicsEngine* getPhysicsEngineInstance() {
+		return physicsEngine;
+	}
 private:
 	Rendering::RenderingEngine* renderingEngine;
 	Physics::PhysicsEngine* physicsEngine;
