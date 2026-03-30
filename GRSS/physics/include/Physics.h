@@ -19,6 +19,18 @@
 #include <common/aixlog.hpp>
 
 namespace Physics{
+	typedef struct CL_ComputeDevice {
+		// Info
+		char name[128];
+		char vendor[128];
+		cl_ulong memory;
+		cl_uint units;
+		// OpenCL specfic
+		cl_device_id devID;
+		cl_context devContext;
+		cl_uint devType;
+	};
+
 	class PhysicsEngine {
 	public:
 		PhysicsEngine();
@@ -32,9 +44,16 @@ namespace Physics{
 			return masses;
 		}
 	private:
-		// # of OpenCL devices
-		int computePlatforms;
+		// Selected platform
+		cl_platform_id openCLPlatform;
+		// Compute device
+		std::vector<CL_ComputeDevice> computeDevices;
 		// List of currently simulated masses
 		std::vector<std::shared_ptr<Mass>> masses;
+
+		// Initilize OpenCL
+		void initlizeOpenCL();
+		// Initlize device
+		void initilizeOpenCLDevice(int id);
 	};
 } // PHYSICS
