@@ -44,7 +44,7 @@ namespace Physics{
         // Retrive name
         char platformName[128];
         clGetPlatformInfo(openCLPlatform, CL_PLATFORM_NAME, sizeof(platformName), platformName, nullptr);
-
+        openCLPlatformName = platformName;
         // Get number of GPU devices
         cl_uint numGPU;
         clGetDeviceIDs(openCLPlatform, CL_DEVICE_TYPE_GPU, 0, nullptr, &numGPU);

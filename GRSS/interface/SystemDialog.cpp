@@ -8,10 +8,7 @@
  *     Code Source avaliable for educational and research purposes only. For commercial use, please contact Electro-Corp.
  *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
  */
-#pragma once
-
 #include <interface/SystemDialog.h>
-
 
 SystemDialog::SystemDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, "GRSS Host System Information", wxDefaultPosition, wxDefaultSize) {
     // Create main sizer
@@ -20,8 +17,11 @@ SystemDialog::SystemDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, "GRSS 
     // Notebook to hold both OpenCL and Rendering options
     wxNotebook* optionsNotebook = new wxNotebook(this, wxID_ANY);
 
+    // OpenCL pane
+    wxPanel* clPane = new wxPanel(optionsNotebook);
+    wxBoxSizer* clPaneSizer = new wxBoxSizer(wxVERTICAL);
     // Create OpenCL devices dataview 
-    openCLDevicesList = new wxDataViewListCtrl(optionsNotebook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxDV_HORIZ_RULES | wxDV_VERT_RULES);
+    openCLDevicesList = new wxDataViewListCtrl(clPane, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxDV_HORIZ_RULES | wxDV_VERT_RULES);
     // Columns
     openCLDevicesList->AppendTextColumn("Vendor", wxDATAVIEW_CELL_INERT, 150);
     openCLDevicesList->AppendTextColumn("Device", wxDATAVIEW_CELL_INERT, 150);
@@ -38,8 +38,15 @@ SystemDialog::SystemDialog(wxWindow* parent) : wxDialog(parent, wxID_ANY, "GRSS 
     }
     openCLDevicesList->AppendItem(devList);
 
-    optionsNotebook->AddPage(openCLDevicesList, L"OpenCL Devices");
-    mainSizer->Add(optionsNotebook, 5, wxEXPAND | wxALL, 5);
+    openCLPlatformText = new wxStaticText(clPane, wxID_ANY, std::string{"  Platform: " + universe->getPhysicsEngineInstance()->getOpenCLPlatformName()}, wxDefaultPosition, wxDefaultSize, wxST_NO_AUTORESIZE);
+
+    clPaneSizer->Add(openCLDevicesList, 5, wxEXPAND | wxALL, 10);
+    clPaneSizer->Add(openCLPlatformText, 1, wxALIGN_LEFT | wxBOTTOM, 1);
+
+    clPane->SetSizer(clPaneSizer);
+
+    optionsNotebook->AddPage(clPane, L"OpenCL Devices");
+    mainSizer->Add(optionsNotebook, 5, wxEXPAND | wxALL);
 
     // Ok button
     wxSizer* buttonSizer = CreateButtonSizer(wxOK);

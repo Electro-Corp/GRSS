@@ -40,6 +40,11 @@ namespace Physics{
 
 		void step(double dt);
 
+
+		// 
+		// Getters
+		//
+
 		std::vector<std::shared_ptr<Mass>> getMasses() {
 			return masses;
 		}
@@ -47,8 +52,13 @@ namespace Physics{
 		std::vector<CL_ComputeDevice> getOpenCLDevices() {
 			return computeDevices;
 		}
+
+		std::string getOpenCLPlatformName(){
+			return openCLPlatformName;
+		}
 	private:
 		// Selected platform
+		std::string openCLPlatformName;
 		cl_platform_id openCLPlatform;
 		// Compute device
 		std::vector<CL_ComputeDevice> computeDevices;

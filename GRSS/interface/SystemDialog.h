@@ -22,4 +22,5 @@ public:
     SystemDialog(wxWindow* parent);
 private:
     wxDataViewListCtrl* openCLDevicesList;
+    wxStaticText* openCLPlatformText;
 };
