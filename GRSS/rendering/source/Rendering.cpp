@@ -13,7 +13,6 @@
 namespace Rendering{
 
     RenderingEngine::RenderingEngine(){
-        LOG(INFO) << "Rendering Engine initilizing.\n";
         // Setup rendering
         glClearDepth(1.0f);
         glEnable(GL_DEPTH_TEST);
@@ -86,16 +85,25 @@ namespace Rendering{
 
     // Pan the view
     void RenderingEngine::pan(double deltaX, double deltaY) {
-        cameraTarget.x -= deltaX / 1000;
-        cameraTarget.y += deltaY / 1000;
+        cameraRIGHT = Vector3::CrossProduct(cameraTarget, cameraUP);
+        
+        cameraPosition = cameraPosition + ((cameraRIGHT * (-deltaX / 1000)) + (cameraUP * (deltaY / 1000)));
+        cameraTarget = cameraTarget + ((cameraRIGHT * (-deltaX / 1000)) + (cameraUP * (deltaY / 1000)));
     }
 
     // Rotate the view
     void RenderingEngine::rotate(double deltaX, double deltaY) {
-        double c = 3.14 / 180;
-        cameraPosition.x *= cos(deltaX * c) * sin(deltaY * c);
-        cameraPosition.y *= sin(deltaX * c) * cos(deltaY * c);
-        cameraPosition.z *= cos(deltaY * c);
+        // This doesn't work at all
+        double c = 1;//3.14 / 180;
+        cameraUP.x += cos(deltaX * c) * sin(deltaY * c);
+        cameraUP.y += sin(deltaX * c) * cos(deltaY * c);
+        cameraUP.z += cos(deltaY * c);
+    }
+
+    // Zoom the view
+    void RenderingEngine::zoom(double delta) {
+        cameraPosition.x -= delta / 1000;
+        cameraPosition.y += delta / 1000;
     }
 
 } // RENDERING

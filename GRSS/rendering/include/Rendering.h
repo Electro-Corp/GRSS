@@ -50,6 +50,9 @@ namespace Rendering{
             // Rotate the view
             void rotate(double deltaX, double deltaY);
 
+            // Zoom
+            void zoom(double delta);
+
             // Getters
             int getNumberOfRenderables() {
                 return objects.size();

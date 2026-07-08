@@ -83,7 +83,7 @@ void GRSSMainFrame::generateMenuBar(){
 }
 
 void GRSSMainFrame::OnWelcome(wxCommandEvent& event){
-    wxMessageBox("Welcome.", "Welcome", wxOK | wxICON_INFORMATION);
+    wxMessageBox("GRSS is a WIP General Relativity simulator. Please report bugs to Electro Corporation.", "Welcome to GRSS!", wxOK | wxICON_INFORMATION);
 }
 
 void GRSSMainFrame::OnSystem(wxCommandEvent& event){
@@ -100,7 +100,7 @@ void GRSSMainFrame::OnAbout(wxCommandEvent& event){
     info.SetName(_("GRSS"));
     info.SetVersion(_("0.0.1 Alpha"));
     info.SetDescription(_("Simulate the universe, somewhat accurately."));
-    info.SetCopyright("(C) 2026 Electro-Corp, Androo");
+    info.SetCopyright("(C) 2026 Electro Corporation (Electro-Corp, Androo)");
  
     wxAboutBox(info);
 }

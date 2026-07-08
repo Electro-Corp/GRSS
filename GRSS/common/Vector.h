@@ -24,12 +24,16 @@ class Vector3{
         Vector3 operator-(const Vector3& other){
             return Vector3(this->x - other.x, this->y - other.y, this->z - other.z);
         }
+
+        Vector3 operator*(const double scalar) {
+            return Vector3(this->x * scalar, this->y * scalar, this->z * scalar);
+        }
+
+        static Vector3 CrossProduct(const Vector3& a, const Vector3& b) {
+            return Vector3((a.y * b.z) - (a.z * b.y), (a.z * b.x) - (a.x * b.z), (a.x * b.y) - (a.y * b.x));
+        }
+
+        static double DotProduct(const Vector3& a, const Vector3& b) {
+            return a.x * b.x + a.y * b.y + a.z * b.z;
+        }
 };
-
-static Vector3 CrossProduct(const Vector3& a, const Vector3& b){
-    return Vector3((a.y * b.z) - (a.z * b.y), (a.z * b.x) - (a.x * b.z), (a.x * b.y) - (a.y * b.x));
-}
-
-static double DotProduct(const Vector3& a, const Vector3& b){
-    return a.x * b.x + a.y * b.y + a.z * b.z;
-}

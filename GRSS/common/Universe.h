@@ -45,8 +45,7 @@ public:
 	Physics::PhysicsEngine* getPhysicsEngineInstance() {
 		return physicsEngine;
 	}
-
-	// Nor do I like this...
+	// Nor this
 	Rendering::RenderingEngine* getRenderingEngineInstance() {
 		return renderingEngine;
 	}

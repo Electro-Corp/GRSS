@@ -92,7 +92,7 @@ void OpenGLPanel::mouseDown(wxMouseEvent& event){
 }
 
 void OpenGLPanel::mouseWheelMoved(wxMouseEvent& event){
-    
+    universe->getRenderingEngineInstance()->zoom(event.GetWheelRotation());
 }
 
 void OpenGLPanel::mouseReleased(wxMouseEvent& event){
