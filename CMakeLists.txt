@@ -16,6 +16,14 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
+# Variable for OS Specfic things
+set(EXE_WINDOWS "")
+
+# Check and set OS vars
+if(WIN32)
+    set(EXE_WINDOWS "GRSS/resource.rc")
+endif()
+
 # Add subdirectories for libraries
 add_subdirectory(GRSS/physics)
 add_subdirectory(GRSS/rendering)
@@ -47,6 +55,8 @@ add_executable(${PROGRAM_NAME}
     GRSS/interface/SystemDialog.cpp
     GRSS/interface/OpenGLPanel.cpp
     GRSS/interface/main.cpp
+
+    ${EXE_WINDOWS}
  )
 
 # Link libraries to executable

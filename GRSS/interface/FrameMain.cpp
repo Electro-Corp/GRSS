@@ -12,6 +12,10 @@
 #include <interface/FrameMain.h>
 
 GRSSMainFrame::GRSSMainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title) {
+    // Main icon
+    SetIcon(wxIcon(wxT("assets/icon.ico"), wxBITMAP_TYPE_ICO));
+    
+    // Generate menu bar
     generateMenuBar();
 
     // Create main panel
