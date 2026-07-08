@@ -24,6 +24,8 @@
 
 #include <include/Object.h>
 
+#include <common/aixlog.hpp>
+
 namespace Rendering{
     // Main class for the Rendering engine
     class RenderingEngine{
@@ -44,6 +46,9 @@ namespace Rendering{
 
             // Pan the view
             void pan(double deltaX, double deltaY);
+
+            // Rotate the view
+            void rotate(double deltaX, double deltaY);
 
             // Getters
             int getNumberOfRenderables() {

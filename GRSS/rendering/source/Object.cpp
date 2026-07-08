@@ -25,7 +25,7 @@ namespace Rendering{
 	}
 
 	SphereObject::SphereObject(Physics::Mass* mass) : Object(mass) {
-
+		quad = gluNewQuadric();
 	}
 
 	void SphereObject::render() {
@@ -33,12 +33,21 @@ namespace Rendering{
 
 		glPushMatrix();
 		glTranslated(mass->position.x, mass->position.y, mass->position.z);
-
-		GLUquadric* quad = gluNewQuadric();
+		// Material
+		GLfloat amb[] = { 0.7f, 0.7f, 0.7f, 1.0f };
+		GLfloat spec[] = { 0.1f, 0.1f, 0.1f, 0.1f };
+		GLfloat shine[] = { 0.5f };
+		glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, amb);
+		glMaterialfv(GL_FRONT, GL_SPECULAR, spec);
+		glMaterialf(GL_FRONT, GL_SHININESS, shine[0]);
+		// Render sphere
+		gluQuadricNormals(quad, GLU_SMOOTH);
 		gluSphere(quad, mass->radius > 0 ? mass->radius : 1.0, 32, 32);
-		gluDeleteQuadric(quad);
-
 		glPopMatrix();
+	}
+
+	SphereObject::~SphereObject() {
+		gluDeleteQuadric(quad);
 	}
 
 } // RENDERING

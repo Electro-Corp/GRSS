@@ -13,12 +13,29 @@
 namespace Rendering{
 
     RenderingEngine::RenderingEngine(){
+        LOG(INFO) << "Rendering Engine initilizing.\n";
         // Setup rendering
         glClearDepth(1.0f);
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LEQUAL);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+        // Global lighting (basic)
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+        glEnable(GL_NORMALIZE);
+        glDisable(GL_TEXTURE_2D);
         glEnable(GL_COLOR_MATERIAL);
+        glColorMaterial(GL_FRONT, GL_DIFFUSE);
+        // Basic lighting for scene
+        GLfloat lightPos[] = { 0.0f, 10.0f, 0.0f, 1.0f };
+        GLfloat lightDiff[] = { 0.4f, 0.4f, 0.4f, 1.0f };
+        GLfloat lightAmb[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+        GLfloat lightSpec[] = { 0.2f, 0.2f, 0.2f, 1.0f };
+
+        glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+        glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiff);
+        glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmb);
+        glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpec);
     }
 
     // Setup viewport
@@ -50,12 +67,12 @@ namespace Rendering{
     }
 
     void RenderingEngine::tick(){
-        glClearColor(0.0, 0.06, 0.25, 1.0f);
+        glClearColor(0.03, 0.03, 0.04, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glLoadIdentity();
         // Update camera
         gluLookAt(
-            cameraPosition.x, cameraPosition.y, cameraPosition.y,
+            cameraPosition.x, cameraPosition.y, cameraPosition.z,
             cameraTarget.x, cameraTarget.y, cameraTarget.z,
             cameraUP.x, cameraUP.y, cameraUP.z
         );
@@ -71,6 +88,14 @@ namespace Rendering{
     void RenderingEngine::pan(double deltaX, double deltaY) {
         cameraTarget.x -= deltaX / 1000;
         cameraTarget.y += deltaY / 1000;
+    }
+
+    // Rotate the view
+    void RenderingEngine::rotate(double deltaX, double deltaY) {
+        double c = 3.14 / 180;
+        cameraPosition.x *= cos(deltaX * c) * sin(deltaY * c);
+        cameraPosition.y *= sin(deltaX * c) * cos(deltaY * c);
+        cameraPosition.z *= cos(deltaY * c);
     }
 
 } // RENDERING

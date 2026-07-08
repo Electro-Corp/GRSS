@@ -36,6 +36,7 @@ class OpenGLPanel : public wxGLCanvas {
         void mouseWheelMoved(wxMouseEvent& event);
         void mouseReleased(wxMouseEvent& event);
         void rightClick(wxMouseEvent& event);
+        void rightReleased(wxMouseEvent& event);
         void mouseLeftWindow(wxMouseEvent& event);
         void keyPressed(wxKeyEvent& event);
         void keyReleased(wxKeyEvent& event);
@@ -45,9 +46,9 @@ class OpenGLPanel : public wxGLCanvas {
         // Deconstruct
         virtual ~OpenGLPanel();
     private:
-        bool refreshSize = true, panning = false;
-        // Pan data
-        wxPoint panStartPoint;
+        bool refreshSize = true, panning = false, rotating = false;
+        // Mouse data
+        wxPoint mouseStartPoint;
         // Our GL context
         wxGLContext* context;
 };

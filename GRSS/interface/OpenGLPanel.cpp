@@ -20,6 +20,7 @@ BEGIN_EVENT_TABLE(OpenGLPanel, wxGLCanvas)
     EVT_LEFT_DOWN(OpenGLPanel::mouseDown)
     EVT_LEFT_UP(OpenGLPanel::mouseReleased)
     EVT_RIGHT_DOWN(OpenGLPanel::rightClick)
+    EVT_RIGHT_UP(OpenGLPanel::rightReleased)
     EVT_MOUSEWHEEL(OpenGLPanel::mouseWheelMoved)
     EVT_LEAVE_WINDOW(OpenGLPanel::mouseLeftWindow)
 
@@ -71,21 +72,23 @@ void OpenGLPanel::resized(wxSizeEvent& evt){
 // Various input events
 
 void OpenGLPanel::mouseMoved(wxMouseEvent& event){
+    wxPoint newPos = event.GetPosition();
     if (panning) {
         // Update pan 
-        wxPoint newPos = event.GetPosition();
-        // Pan
-        universe->getRenderingEngineInstance()->pan(newPos.x - panStartPoint.x, newPos.y - panStartPoint.y);
-        panStartPoint = newPos;
+        universe->getRenderingEngineInstance()->pan(newPos.x - mouseStartPoint.x, newPos.y - mouseStartPoint.y);
     }
+    if (rotating) {
+        // Update rotation
+        universe->getRenderingEngineInstance()->rotate(newPos.x - mouseStartPoint.x, newPos.y - mouseStartPoint.y);
+    }
+    mouseStartPoint = newPos;
+
 }
 
 void OpenGLPanel::mouseDown(wxMouseEvent& event){
-    // Check if it went down
-    if (event.LeftIsDown()) {
-        panning = true;
-        panStartPoint = event.GetPosition();
-    }
+    panning = true;
+    mouseStartPoint = event.GetPosition();
+    event.Skip();
 }
 
 void OpenGLPanel::mouseWheelMoved(wxMouseEvent& event){
@@ -93,14 +96,18 @@ void OpenGLPanel::mouseWheelMoved(wxMouseEvent& event){
 }
 
 void OpenGLPanel::mouseReleased(wxMouseEvent& event){
-    // Check if it went up
-    if (!event.LeftIsDown()) {
-        panning = false;
-    }
+    panning = false;
+    event.Skip();
+}
+
+void OpenGLPanel::rightReleased(wxMouseEvent& event) {
+    rotating = false;
 }
 
 void OpenGLPanel::rightClick(wxMouseEvent& event){
-
+    rotating = true;
+    mouseStartPoint = event.GetPosition();
+    event.Skip();
 }
 
 void OpenGLPanel::mouseLeftWindow(wxMouseEvent& event){

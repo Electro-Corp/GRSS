@@ -13,12 +13,14 @@
 Universe* universe = new Universe();
 
 Universe::Universe() {
-	// Create engines
+	// Create physics engine
 	this->physicsEngine = new Physics::PhysicsEngine();
-	this->renderingEngine = new Rendering::RenderingEngine();
 }
 
 void Universe::setupUniverseViewport(int tlX, int tlY, int brX, int brY) {
+	// Viewport setting up means that OpenGL is ready to be init
+	this->renderingEngine = new Rendering::RenderingEngine();
+	// Setup viewport
 	this->renderingEngine->setupViewport(tlX, tlY, brX, brY);
 }
 

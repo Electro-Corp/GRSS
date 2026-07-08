@@ -12,23 +12,29 @@
 
 #include <physics/include/Mass.h>
 
+struct GLUquadric;
+
 namespace Rendering{
     class Object{
-        public: 
-            Physics::Mass* mass;
+    public: 
+        Physics::Mass* mass;
 
-            Object(Physics::Mass* mass);
+        Object(Physics::Mass* mass);
 
-            virtual void render() = 0;
+        virtual void render() = 0;
 
-            virtual ~Object() = default;
-        private:
+        virtual ~Object() = default;
+    private:
     };
 
     class SphereObject : public Object {
     public:
         SphereObject(Physics::Mass* mass);
         void render() override;
+
+        ~SphereObject();
+    private:
+        GLUquadric* quad;
     };
 
 } // RENDERING

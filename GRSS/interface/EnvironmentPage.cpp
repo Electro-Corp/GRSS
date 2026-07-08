@@ -64,7 +64,7 @@ void EnvironmentPage::envPage_deleteMass(wxCommandEvent& event){
         selectedObject = 0;
         selectedIndex = -1;
     }else{
-        wxMessageBox("Please select an object to delete.", "Error", wxOK | wxICON_ERROR);
+        wxMessageBox("Please select an object to delete.", "GRSS: Deletion Error", wxOK | wxICON_ERROR);
     }
 }
 
