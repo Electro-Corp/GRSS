@@ -71,19 +71,32 @@ void OpenGLPanel::resized(wxSizeEvent& evt){
 // Various input events
 
 void OpenGLPanel::mouseMoved(wxMouseEvent& event){
-
+    if (panning) {
+        // Update pan 
+        wxPoint newPos = event.GetPosition();
+        // Pan
+        universe->getRenderingEngineInstance()->pan(newPos.x - panStartPoint.x, newPos.y - panStartPoint.y);
+        panStartPoint = newPos;
+    }
 }
 
 void OpenGLPanel::mouseDown(wxMouseEvent& event){
-
+    // Check if it went down
+    if (event.LeftIsDown()) {
+        panning = true;
+        panStartPoint = event.GetPosition();
+    }
 }
 
 void OpenGLPanel::mouseWheelMoved(wxMouseEvent& event){
-
+    
 }
 
 void OpenGLPanel::mouseReleased(wxMouseEvent& event){
-
+    // Check if it went up
+    if (!event.LeftIsDown()) {
+        panning = false;
+    }
 }
 
 void OpenGLPanel::rightClick(wxMouseEvent& event){

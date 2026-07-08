@@ -41,8 +41,14 @@ public:
 		return renderingEngine->getObjectAtIndex(idx);
 	}
 
+	// I don't like this...
 	Physics::PhysicsEngine* getPhysicsEngineInstance() {
 		return physicsEngine;
+	}
+
+	// Nor do I like this...
+	Rendering::RenderingEngine* getRenderingEngineInstance() {
+		return renderingEngine;
 	}
 private:
 	Rendering::RenderingEngine* renderingEngine;

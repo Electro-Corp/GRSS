@@ -10,6 +10,8 @@
  */
 #pragma once
 
+#include <common/Universe.h>
+
 #include <wx/wx.h>
 #include <wx/panel.h>
 #include <wx/glcanvas.h>
@@ -43,7 +45,9 @@ class OpenGLPanel : public wxGLCanvas {
         // Deconstruct
         virtual ~OpenGLPanel();
     private:
-        bool refreshSize = true;
+        bool refreshSize = true, panning = false;
+        // Pan data
+        wxPoint panStartPoint;
         // Our GL context
         wxGLContext* context;
 };

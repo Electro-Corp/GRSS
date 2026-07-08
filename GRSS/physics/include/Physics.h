@@ -19,7 +19,7 @@
 #include <common/aixlog.hpp>
 
 namespace Physics{
-	typedef struct CL_ComputeDevice {
+	struct CL_ComputeDevice {
 		// Info
 		char name[128];
 		char vendor[128];
@@ -29,7 +29,7 @@ namespace Physics{
 		cl_device_id devID;
 		cl_context devContext;
 		cl_uint devType;
-	};
+	} typedef;
 
 	class PhysicsEngine {
 	public:

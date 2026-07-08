@@ -32,6 +32,12 @@ namespace Rendering{
         gluPerspective(45, ratio, 0.1, 200); // View angle, ratio, Clip near, Clip far
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
+
+        // Setup camera
+        cameraPosition = Vector3(0.0, 0.0, 0.0);
+        cameraUP = Vector3(0.0, 1.0, 0.0);
+        cameraRIGHT = Vector3(1.0, 0.0, 0.0);
+        cameraTarget = Vector3(0.0, 0.0, -0.6); // Default spawn point for objects
     }
 
     // Add an object to the scene
@@ -47,12 +53,24 @@ namespace Rendering{
         glClearColor(0.0, 0.06, 0.25, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glLoadIdentity();
+        // Update camera
+        gluLookAt(
+            cameraPosition.x, cameraPosition.y, cameraPosition.y,
+            cameraTarget.x, cameraTarget.y, cameraTarget.z,
+            cameraUP.x, cameraUP.y, cameraUP.z
+        );
         // Render each object
         for(auto& object: this->objects){
             object->render();
         }
         // Flush
         glFlush();
+    }
+
+    // Pan the view
+    void RenderingEngine::pan(double deltaX, double deltaY) {
+        cameraTarget.x -= deltaX / 1000;
+        cameraTarget.y += deltaY / 1000;
     }
 
 } // RENDERING

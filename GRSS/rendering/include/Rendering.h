@@ -42,6 +42,9 @@ namespace Rendering{
             // Render the current enviorment
             void tick();
 
+            // Pan the view
+            void pan(double deltaX, double deltaY);
+
             // Getters
             int getNumberOfRenderables() {
                 return objects.size();
@@ -51,6 +54,10 @@ namespace Rendering{
                 return objects[index];
             }
         private:
+            // Vector containing all renderable objects
             std::vector<std::shared_ptr<Object>> objects;
+
+            // Camera stuff
+            Vector3 cameraPosition, cameraUP, cameraRIGHT, cameraTarget;
     };
 }
