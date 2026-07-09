@@ -87,17 +87,22 @@ namespace Rendering{
     void RenderingEngine::pan(double deltaX, double deltaY) {
         cameraRIGHT = Vector3::CrossProduct(cameraTarget, cameraUP);
         
-        cameraPosition = cameraPosition + ((cameraRIGHT * (-deltaX / 1000)) + (cameraUP * (deltaY / 1000)));
-        cameraTarget = cameraTarget + ((cameraRIGHT * (-deltaX / 1000)) + (cameraUP * (deltaY / 1000)));
+        cameraPosition += ((cameraRIGHT * (-deltaX / 1000)) + (cameraUP * (deltaY / 1000)));
+        cameraTarget += ((cameraRIGHT * (-deltaX / 1000)) + (cameraUP * (deltaY / 1000)));
     }
 
     // Rotate the view
     void RenderingEngine::rotate(double deltaX, double deltaY) {
-        // This doesn't work at all
-        double c = 1;//3.14 / 180;
-        cameraUP.x += cos(deltaX * c) * sin(deltaY * c);
-        cameraUP.y += sin(deltaX * c) * cos(deltaY * c);
-        cameraUP.z += cos(deltaY * c);
+        // Reduce input
+        deltaX /= 1000;
+        deltaY /= 1000;
+        // Calculate new position
+        Vector3 target(deltaX, deltaY, deltaX);
+        cameraPosition += target;
+
+        cameraTarget -= target;
+        cameraRIGHT = Vector3::CrossProduct(cameraTarget, Vector3(0.0, 1.0, 0.0));
+        cameraUP = Vector3::CrossProduct(cameraTarget, cameraRIGHT);
     }
 
     // Zoom the view

@@ -98,9 +98,10 @@ void GRSSMainFrame::OnExit(wxCommandEvent& event){
 void GRSSMainFrame::OnAbout(wxCommandEvent& event){
     wxAboutDialogInfo info;
     info.SetName(_("GRSS"));
-    info.SetVersion(_("0.0.1 Alpha"));
+    info.SetVersion(_("0.0.1"));
     info.SetDescription(_("Simulate the universe, somewhat accurately."));
     info.SetCopyright("(C) 2026 Electro Corporation (Electro-Corp, Androo)");
+    info.SetIcon(wxIcon(wxT("assets/icon.ico")));
  
     wxAboutBox(info);
 }
@@ -125,7 +126,7 @@ void RenderTimer::Notify(){
         long currentTime = wxGetLocalTimeMillis().GetValue();
         if(currentTime - frame->lastTime >= 1000){
             double fps = (double)frame->frameCount / ((double)(currentTime - frame->lastTime) / 1000.0);
-            frame->SetStatusText(wxString::Format("FPS: %.2f", fps));
+            frame->SetStatusText(wxString::Format("FPS: %.2f | Current tick: %d", fps, universe->getCurrentUniverseTick()));
             frame->frameCount = 0;
             frame->lastTime = currentTime;
         }

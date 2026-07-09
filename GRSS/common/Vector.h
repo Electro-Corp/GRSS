@@ -29,6 +29,18 @@ class Vector3{
             return Vector3(this->x * scalar, this->y * scalar, this->z * scalar);
         }
 
+        void operator+=(const Vector3& other) {
+            this->x += other.x;
+            this->y += other.y;
+            this->z += other.z;
+        }
+
+        void operator-=(const Vector3& other) {
+            this->x -= other.x;
+            this->y -= other.y;
+            this->z -= other.z;
+        }
+
         static Vector3 CrossProduct(const Vector3& a, const Vector3& b) {
             return Vector3((a.y * b.z) - (a.z * b.y), (a.z * b.x) - (a.x * b.z), (a.x * b.y) - (a.y * b.x));
         }

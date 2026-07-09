@@ -41,6 +41,10 @@ public:
 		return renderingEngine->getObjectAtIndex(idx);
 	}
 
+	int getCurrentUniverseTick() {
+		return universeTick;
+	}
+
 	// I don't like this...
 	Physics::PhysicsEngine* getPhysicsEngineInstance() {
 		return physicsEngine;
@@ -52,6 +56,8 @@ public:
 private:
 	Rendering::RenderingEngine* renderingEngine;
 	Physics::PhysicsEngine* physicsEngine;
+	// Current tick
+	int universeTick = 0;
 };
 
 extern Universe* universe;
