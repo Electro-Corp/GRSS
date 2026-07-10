@@ -57,7 +57,7 @@ void Universe::updateRenderer() {
 }
 
 void Universe::tick(double dt) {
-	universeTick += dt;
+	universeTick += (int)(dt * 100);
 	physicsEngine->step(dt);
 	// Trigger that the masses properties have most likely been modified...
 	connector->trigger(TRIGGER_SELECTED_MASS_MODIFIED);

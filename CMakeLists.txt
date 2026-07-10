@@ -48,6 +48,7 @@ add_executable(${PROGRAM_NAME}
     GRSS/common/Connections.cpp
     GRSS/interface/FrameMain.cpp
     GRSS/interface/EnvironmentPage.cpp
+    GRSS/interface/RenderingPage.cpp
     GRSS/interface/TopPanel.cpp
     GRSS/interface/SideBar.cpp
     GRSS/interface/PropertiesPanel.cpp
@@ -57,7 +58,7 @@ add_executable(${PROGRAM_NAME}
     GRSS/interface/main.cpp
 
     ${EXE_WINDOWS}
- )
+)
 
 # Link libraries to executable
 target_link_libraries(${PROGRAM_NAME}

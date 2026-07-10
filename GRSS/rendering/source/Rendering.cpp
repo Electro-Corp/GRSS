@@ -26,7 +26,7 @@ namespace Rendering{
         glEnable(GL_COLOR_MATERIAL);
         glColorMaterial(GL_FRONT, GL_DIFFUSE);
         // Basic lighting for scene
-        GLfloat lightPos[] = { 0.0f, 10.0f, 0.0f, 1.0f };
+        GLfloat lightPos[] = { 2.0f, 5.0f, 3.0f, 1.0f };
         GLfloat lightDiff[] = { 0.4f, 0.4f, 0.4f, 1.0f };
         GLfloat lightAmb[] = { 0.2f, 0.2f, 0.2f, 1.0f };
         GLfloat lightSpec[] = { 0.2f, 0.2f, 0.2f, 1.0f };
@@ -94,15 +94,11 @@ namespace Rendering{
     // Rotate the view
     void RenderingEngine::rotate(double deltaX, double deltaY) {
         // Reduce input
-        deltaX /= 1000;
-        deltaY /= 1000;
+        deltaX /= 500;
+        deltaY /= 100;
         // Calculate new position
         Vector3 target(deltaX, deltaY, deltaX);
         cameraPosition += target;
-
-        cameraTarget -= target;
-        cameraRIGHT = Vector3::CrossProduct(cameraTarget, Vector3(0.0, 1.0, 0.0));
-        cameraUP = Vector3::CrossProduct(cameraTarget, cameraRIGHT);
     }
 
     // Zoom the view

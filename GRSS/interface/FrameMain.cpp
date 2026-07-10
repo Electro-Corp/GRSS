@@ -64,6 +64,12 @@ void GRSSMainFrame::generateMenuBar(){
     fileMenu->AppendSeparator();
     fileMenu->Append(wxID_EXIT);
 
+    // Edit
+    wxMenu* editMenu = new wxMenu;
+
+    // Tools
+    wxMenu* toolMenu = new wxMenu;
+
     // Help
     wxMenu* helpMenu = new wxMenu;
     helpMenu->Append(ID_System, "&System Information");
@@ -72,6 +78,8 @@ void GRSSMainFrame::generateMenuBar(){
     // Menu bar
     wxMenuBar* menuBar = new wxMenuBar;
     menuBar->Append(fileMenu, "&File");
+    menuBar->Append(editMenu, "&Edit");
+    menuBar->Append(toolMenu, "&Tools");
     menuBar->Append(helpMenu, "&Help");
 
     SetMenuBar(menuBar);

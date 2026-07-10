@@ -78,7 +78,8 @@ namespace Physics{
     void PhysicsEngine::removeMass(int index){
         masses.erase(masses.begin() + index);
     }
-
+    
+    // TODO: Convert Physics calculations into OpenCL kernels
     void PhysicsEngine::step(double dt) {
         // Basic Euler integration, move to rk4 or better
         for (auto& mass : masses) {

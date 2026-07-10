@@ -17,9 +17,9 @@ TopPanel::TopPanel(wxPanel* parent) : wxPanel(parent, -1, wxPoint(-1, -1), wxSiz
 
     envPage = new EnvironmentPage(topNotebook);
     topNotebook->AddPage(envPage, L"Environment");
-    // Temp rendering page
-    wxTextCtrl* textCtrl2 = new wxTextCtrl(topNotebook, wxID_ANY, L"Rendering");
-    topNotebook->AddPage(textCtrl2, L"Rendering");
+    // 
+    renPage = new RenderingPage(topNotebook);
+    topNotebook->AddPage(renPage, L"Rendering");
 
 
     this->SetMinSize(wxSize(-1, 150));
