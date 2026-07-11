@@ -71,6 +71,7 @@ target_link_libraries(${PROGRAM_NAME}
 )
 
 # Copy assets to build
+make_directory(assets)
 file(GLOB assets ${CMAKE_SOURCE_DIR}/GRSS/assets/*)
 foreach(in_file IN LISTS assets)
     get_filename_component(out_file ${in_file} NAME)
@@ -78,6 +79,7 @@ foreach(in_file IN LISTS assets)
 endforeach()
 
 # Copy OpenCL kernels to build
+make_directory(kernels)
 file(GLOB kernels ${CMAKE_SOURCE_DIR}/GRSS/kernels/*)
 foreach(in_file IN LISTS kernels)
     get_filename_component(out_file ${in_file} NAME)
