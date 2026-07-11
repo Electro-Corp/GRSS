@@ -9,6 +9,7 @@
  *     Contributions to this project are welcome. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
 */
 #pragma once
+#include <cmath>
 
 class Vector3{
     public:
@@ -29,6 +30,10 @@ class Vector3{
             return Vector3(this->x * scalar, this->y * scalar, this->z * scalar);
         }
 
+        Vector3 operator/(const double scalar) {
+            return Vector3(this->x / scalar, this->y / scalar, this->z / scalar);
+        }
+
         void operator+=(const Vector3& other) {
             this->x += other.x;
             this->y += other.y;
@@ -45,7 +50,23 @@ class Vector3{
             return Vector3((a.y * b.z) - (a.z * b.y), (a.z * b.x) - (a.x * b.z), (a.x * b.y) - (a.y * b.x));
         }
 
+        Vector3 cross(Vector3& v) {
+            return CrossProduct(*this, v);
+        }
+
         static double DotProduct(const Vector3& a, const Vector3& b) {
             return a.x * b.x + a.y * b.y + a.z * b.z;
+        }
+        
+        double magnitude() {
+            return sqrt(x * x + y * y + z * z);
+        }
+
+        Vector3 normalize() {
+            double mag = magnitude();
+            if (mag == 0.0) {
+                return Vector3(0, 0, 0);
+            }
+            return Vector3(x / mag, y / mag, z / mag);
         }
 };
