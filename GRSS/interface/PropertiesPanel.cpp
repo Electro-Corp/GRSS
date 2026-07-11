@@ -27,6 +27,9 @@ PropertiesPanel::PropertiesPanel(wxPanel* parent) : wxPanel(parent, -1, wxPoint(
 }
 
 void PropertiesPanel::populatePropertyGrid() {
+    // Name
+    propName = new wxStringProperty("Name", wxPG_LABEL, "");
+    propertyGrid->Append(propName);
     // Physics controls
     propertyGrid->Append(new wxPropertyCategory("Position (m)"));
     propPositionX = new wxFloatProperty("Pos_X", wxPG_LABEL, 0);
@@ -68,6 +71,12 @@ void PropertiesPanel::OnPropertyGridChanged(wxPropertyGridEvent& event) {
     // Check if the object we're using even exists
     if (selectedObject) {
         wxPGProperty* prop = event.GetProperty();
+        // Check against name
+        if (prop == propName) {
+            selectedObject->mass->name = event.GetPropertyValue().GetString();
+            // Tell list to refresh
+            connector->trigger(TRIGGER_MASSES_MODIFIED);
+        }
         // Check against position
         if (prop == propPositionX) onPositionChanged(event.GetPropertyValue().GetDouble(), 0);
         if (prop == propPositionY) onPositionChanged(event.GetPropertyValue().GetDouble(), 1);
@@ -91,6 +100,8 @@ void PropertiesPanel::OnPropertyGridChanged(wxPropertyGridEvent& event) {
 
 void PropertiesPanel::updatePropertyGrid() {
     if (selectedObject) {
+        // Update name
+        propName->SetValue(selectedObject->mass->name);
         // Update positions
         propPositionX->SetValue(selectedObject->mass->position.x);
         propPositionY->SetValue(selectedObject->mass->position.y);

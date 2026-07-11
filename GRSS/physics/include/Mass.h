@@ -10,6 +10,8 @@
 */
 #pragma once
 
+#include <string>
+
 #include <common/Vector.h>
 
 namespace Physics{
@@ -17,6 +19,8 @@ namespace Physics{
         public:
             Vector3 position;
             Vector3 linearVelocity, angularVelocity;
+
+            std::string name;
 
             double mass, radius;
 
