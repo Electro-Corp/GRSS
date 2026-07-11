@@ -107,9 +107,11 @@ void GRSSMainFrame::OnAbout(wxCommandEvent& event){
     wxAboutDialogInfo info;
     info.SetName(_("GRSS"));
     info.SetVersion(_("0.0.1"));
-    info.SetDescription(_("Simulate the universe, somewhat accurately."));
-    info.SetCopyright("(C) 2026 Electro Corporation (Electro-Corp, Androo)");
-    info.SetIcon(wxIcon(wxT("assets/icon.ico")));
+    info.SetDescription(_("Simulate the universe"));
+    info.SetCopyright("(C) 2026 Electro Corporation");
+    info.AddDeveloper("Chinmay Tiwari");
+    info.AddDeveloper("Andrew Coon");
+    info.SetIcon(wxIcon(wxT("assets/icon.ico"), wxBITMAP_TYPE_ICO));
  
     wxAboutBox(info);
 }

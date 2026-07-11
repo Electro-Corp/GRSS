@@ -58,7 +58,7 @@ void OpenGLPanel::render(wxPaintEvent& event){
 
     // Render commands
     universe->updateRenderer();
-
+    
     SwapBuffers();
 }
 
