@@ -30,6 +30,7 @@ private:
     wxFloatProperty *propVelocityX, *propVelocityY, *propVelocityZ;
     wxFloatProperty *propAngularVelocityX, *propAngularVelocityY, *propAngularVelocityZ;
     wxFloatProperty *propMass, *propRadius;
+    wxStringProperty* propName;
 
     void populatePropertyGrid();
     void updatePropertyGrid();

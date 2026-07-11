@@ -30,6 +30,7 @@ void Universe::addPlanet(Vector3 pos, double mass, double radius) {
 	newMass->mass = mass;
 	newMass->radius = radius;
 	newMass->linearVelocity = Vector3(0.0, 0.5, 0.0);
+	newMass->name = std::string{ "Mass_" + std::to_string(getNumberOfObjects() + 1) };
 
 	// 2. Create rendering sphere
 	std::shared_ptr<Rendering::SphereObject> sphereView = std::make_shared<Rendering::SphereObject>(newMass.get());

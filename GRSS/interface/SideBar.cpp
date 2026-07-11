@@ -36,7 +36,7 @@ void SideBar::updateList() {
     objectListBox->Clear();
     // Get objects
     for(int i = 0; i < universe->getNumberOfObjects(); i++){
-        objectListBox->Append(std::string{"Mass_"+std::to_string(i)}.c_str());
+        objectListBox->Append(universe->getObjectAtIndex(i)->mass->name.c_str());
     }
 }
 
