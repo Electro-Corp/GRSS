@@ -67,5 +67,7 @@ namespace Rendering{
 
             // Camera stuff
             Vector3 cameraPosition, cameraUP, cameraRIGHT, cameraFORWARD, cameraTarget;
+            double yaw;
+            double pitch;
     };
 }

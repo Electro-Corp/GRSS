@@ -12,7 +12,10 @@
 
 namespace Rendering{
 
-    RenderingEngine::RenderingEngine(){
+    RenderingEngine::RenderingEngine()
+        : yaw(-1.57079632679), 
+          pitch(0.0)
+    {
         // Setup rendering
         glClearDepth(1.0f);
         glEnable(GL_DEPTH_TEST);
@@ -98,11 +101,29 @@ namespace Rendering{
     // Rotate the view
     void RenderingEngine::rotate(double deltaX, double deltaY) {
         // Reduce input
-        deltaX /= 500;
-        deltaY /= 100;
-        // Calculate new position
-        Vector3 target(deltaX, deltaY, deltaX);
-        cameraPosition += target;
+        double sense = 0.005;
+        yaw += deltaX * sense;
+        pitch += deltaY * sense;
+       
+        if (pitch > 1.55) pitch = 1.55;
+        if (pitch < -1.55) pitch = -1.55;
+        
+        cameraFORWARD.x = cos(pitch) * sin(yaw);
+        cameraFORWARD.y = sin(pitch);
+        cameraFORWARD.z = cos(pitch) * cos(yaw);
+        cameraFORWARD = cameraFORWARD.normalize();
+
+        Vector3 worldUp(0.0, 1.0, 0.0);
+
+        if (std::abs(cameraFORWARD.y) > 0.999) {
+            cameraRIGHT = Vector3(1.0, 0.0, 0.0);
+        } else {
+            cameraRIGHT = Vector3::CrossProduct(worldUp, cameraFORWARD).normalize();
+        }
+
+        cameraUP = cameraRIGHT.cross(cameraFORWARD).normalize();
+
+        cameraTarget = cameraPosition + cameraFORWARD * 0.6;
     }
 
     // Zoom the view
