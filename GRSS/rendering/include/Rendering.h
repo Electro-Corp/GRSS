@@ -66,6 +66,6 @@ namespace Rendering{
             std::vector<std::shared_ptr<Object>> objects;
 
             // Camera stuff
-            Vector3 cameraPosition, cameraUP, cameraRIGHT, cameraTarget;
+            Vector3 cameraPosition, cameraUP, cameraRIGHT, cameraFORWARD, cameraTarget;
     };
 }

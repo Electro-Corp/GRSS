@@ -35,6 +35,13 @@ namespace Rendering{
         glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDiff);
         glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmb);
         glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpec);
+
+        // Setup camera
+        cameraPosition = Vector3(0.0, 0.0, 0.0);
+        cameraUP = Vector3(0.0, 1.0, 0.0);
+        cameraRIGHT = Vector3(1.0, 0.0, 0.0);
+        cameraFORWARD = Vector3(0.0, 0.0, 1.0);
+        cameraTarget = Vector3(0.0, 0.0, -0.6); // Default spawn point for objects
     }
 
     // Setup viewport
@@ -48,12 +55,6 @@ namespace Rendering{
         gluPerspective(45, ratio, 0.1, 200); // View angle, ratio, Clip near, Clip far
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
-
-        // Setup camera
-        cameraPosition = Vector3(0.0, 0.0, 0.0);
-        cameraUP = Vector3(0.0, 1.0, 0.0);
-        cameraRIGHT = Vector3(1.0, 0.0, 0.0);
-        cameraTarget = Vector3(0.0, 0.0, -0.6); // Default spawn point for objects
     }
 
     // Add an object to the scene
@@ -89,6 +90,9 @@ namespace Rendering{
         
         cameraPosition += ((cameraRIGHT * (-deltaX / 1000)) + (cameraUP * (deltaY / 1000)));
         cameraTarget += ((cameraRIGHT * (-deltaX / 1000)) + (cameraUP * (deltaY / 1000)));
+
+        // Update forward
+        cameraFORWARD = Vector3::CrossProduct(cameraUP, cameraRIGHT);
     }
 
     // Rotate the view
@@ -103,8 +107,13 @@ namespace Rendering{
 
     // Zoom the view
     void RenderingEngine::zoom(double delta) {
-        cameraPosition.x -= delta / 1000;
-        cameraPosition.y += delta / 1000;
+        // Update forward
+        cameraFORWARD = Vector3::CrossProduct(cameraUP, cameraRIGHT);
+        // Reduce delta
+        delta /= 1000;
+        // Move the inverse direction
+        Vector3 offset(cameraFORWARD.x * delta, cameraFORWARD.y * delta, cameraFORWARD.z * delta);
+        cameraPosition += offset;
     }
 
 } // RENDERING

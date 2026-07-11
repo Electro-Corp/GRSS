@@ -17,6 +17,7 @@
 
 #include <physics/include/Mass.h>
 #include <common/aixlog.hpp>
+#include <common/Utility.h>
 
 namespace Physics{
 	struct CL_ComputeDevice {
@@ -62,6 +63,14 @@ namespace Physics{
 		cl_platform_id openCLPlatform;
 		// Compute device
 		std::vector<CL_ComputeDevice> computeDevices;
+		// Compute Context
+		cl_context openCLComputeContext;
+		// Command queue
+		cl_command_queue openCLCommandQueue;
+		// Program
+		cl_program testCLProgram;
+		// Compute kernel for test program
+		cl_kernel k_basic_mass_calculate;
 		// List of currently simulated masses
 		std::vector<std::shared_ptr<Mass>> masses;
 

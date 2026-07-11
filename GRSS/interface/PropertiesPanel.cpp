@@ -28,7 +28,7 @@ PropertiesPanel::PropertiesPanel(wxPanel* parent) : wxPanel(parent, -1, wxPoint(
 
 void PropertiesPanel::populatePropertyGrid() {
     // Physics controls
-    propertyGrid->Append(new wxPropertyCategory("Position"));
+    propertyGrid->Append(new wxPropertyCategory("Position (m)"));
     propPositionX = new wxFloatProperty("Pos_X", wxPG_LABEL, 0);
     propPositionY = new wxFloatProperty("Pos_Y", wxPG_LABEL, 0);
     propPositionZ = new wxFloatProperty("Pos_Z", wxPG_LABEL, 0);
@@ -36,7 +36,7 @@ void PropertiesPanel::populatePropertyGrid() {
     propertyGrid->Append(propPositionY);
     propertyGrid->Append(propPositionZ);
     // Linear Velocity
-    propertyGrid->Append(new wxPropertyCategory("Linear Velocity"));
+    propertyGrid->Append(new wxPropertyCategory("Linear Velocity (m/s)"));
     propVelocityX = new wxFloatProperty("LinV_X", wxPG_LABEL, 0);
     propVelocityY = new wxFloatProperty("LinV_Y", wxPG_LABEL, 0);
     propVelocityZ = new wxFloatProperty("LinV_Z", wxPG_LABEL, 0);
@@ -44,7 +44,7 @@ void PropertiesPanel::populatePropertyGrid() {
     propertyGrid->Append(propVelocityY);
     propertyGrid->Append(propVelocityZ);
     // Angular Velocity
-    propertyGrid->Append(new wxPropertyCategory("Angular Velocity"));
+    propertyGrid->Append(new wxPropertyCategory("Angular Velocity (m/s)"));
     propAngularVelocityX = new wxFloatProperty("AngV_X", wxPG_LABEL, 0);
     propAngularVelocityY = new wxFloatProperty("AngV_Y", wxPG_LABEL, 0);
     propAngularVelocityZ = new wxFloatProperty("AngV_Z", wxPG_LABEL, 0);
@@ -53,8 +53,8 @@ void PropertiesPanel::populatePropertyGrid() {
     propertyGrid->Append(propAngularVelocityZ);
     // Physical properties
     propertyGrid->Append(new wxPropertyCategory("Physical Properties"));
-    propMass = new wxFloatProperty("Mass", wxPG_LABEL, 0);
-    propRadius = new wxFloatProperty("Radius", wxPG_LABEL, 0);
+    propMass = new wxFloatProperty("Mass (kg)", wxPG_LABEL, 0);
+    propRadius = new wxFloatProperty("Radius (m)", wxPG_LABEL, 0);
     propertyGrid->Append(propMass);
     propertyGrid->Append(propRadius);
 
@@ -83,6 +83,9 @@ void PropertiesPanel::OnPropertyGridChanged(wxPropertyGridEvent& event) {
         // Check against physical properties
         if (prop == propMass) onMassChanged(event.GetPropertyValue().GetDouble());
         if (prop == propRadius) onRadiusChanged(event.GetPropertyValue().GetDouble());
+    }
+    else {
+        wxMessageBox("Please select an object to modify.", "GRSS: Property Modification Error", wxOK | wxICON_ERROR);
     }
 }
 

@@ -76,3 +76,10 @@ foreach(in_file IN LISTS assets)
     get_filename_component(out_file ${in_file} NAME)
     file(COPY_FILE ${in_file} ${CMAKE_BINARY_DIR}/assets/${out_file})
 endforeach()
+
+# Copy OpenCL kernels to build
+file(GLOB kernels ${CMAKE_SOURCE_DIR}/GRSS/kernels/*)
+foreach(in_file IN LISTS kernels)
+    get_filename_component(out_file ${in_file} NAME)
+    file(COPY_FILE ${in_file} ${CMAKE_BINARY_DIR}/kernels/${out_file})
+endforeach()
